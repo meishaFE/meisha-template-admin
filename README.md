@@ -7,7 +7,7 @@
 ## 使用说明
 **注意此模版基于vue-cli3**，输入以下命令进行创建项目，`my-project`是你的项目名称。  
 
-```vue create --preset meishaFE/meisha-template-cli3 my-project```
+```vue create --preset meishaFE/meisha-template-admin my-project```
 
 命令执行后进行自定义选择，无特殊情况默认即可。
 
