@@ -1,0 +1,75 @@
+//清除浮动
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+    overflow: hidden;
+  }
+}
+
+%clearfix {
+  @include clearfix;
+}
+
+//文本截取
+@mixin singleline-ellipsis($substract:0) {
+  //`$substract`单位为%
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100% - $substract;
+}
+
+%singleline-ellipsis {
+  @include singleline-ellipsis;
+}
+
+//透明度设置
+@mixin opacity($opacity:50) {
+  opacity: $opacity / 100;
+  @if $filter {
+    filter: alpha(opacity=$opacity);
+  }
+}
+
+//圆角
+@mixin rounded($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+//过渡 @include transition(color .3s ease);
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+//box-sizing
+@mixin box-sizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+//字体样式设置
+@mixin font-style($size, $color, $lineHeight) {
+  font-size: $size;
+  color: $color;
+  line-height: $lineHeight;
+}
+
+@mixin backgroundSize($size, $size1) {
+  -webkit-background-size: $size $size1; // 某些android 例如 Ophone 要加上 -webkit 的前缀
+  -moz-background-size: $size $size1;
+  -ms-background-size: $size $size1;
+  -o-background-size: $size $size1;
+  background-size: $size $size1;
+}

@@ -1,0 +1,10 @@
+{
+    "useConfigFiles": true,
+    "router": false,
+    "vuex": false,
+    "cssPreprocessor": "sass",
+    "plugins": {
+      "@vue/cli-plugin-babel": {},
+      "@vue/cli-plugin-eslint": {}
+    }
+  }

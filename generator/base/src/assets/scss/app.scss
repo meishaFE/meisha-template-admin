@@ -1,0 +1,106 @@
+@import 'reset';
+@import 'color';
+@import 'mixin';
+
+/*
+  页面公共样式
+*/
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 311358 */
+  src: url('//at.alicdn.com/t/font_311358_thad2hal821n61or.eot');
+  src: url('//at.alicdn.com/t/font_311358_thad2hal821n61or.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_311358_thad2hal821n61or.woff') format('woff'),
+  url('//at.alicdn.com/t/font_311358_thad2hal821n61or.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_311358_thad2hal821n61or.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu::before {
+  content: "\e6c0";
+}
+
+.icon-message::before {
+  content: "\e6b7";
+}
+
+.icon-setting::before {
+  content: "\e643";
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.el-submenu .el-menu-item {
+  min-width: auto;
+}
+
+/* 面包屑处样式 */
+.common-bread-zone {
+  height: 48px;
+  background: $bgColorCrumbs;
+  border-bottom: 1px solid $borderColorTable;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  .bread-crumb-left {
+    display: inline-block;
+    padding-left: 16px;
+    line-height: 48px;
+  }
+  .top-search-input {
+    position: absolute;
+    right: 20px;
+    top: 9px;
+    width: 310px;
+  }
+}
+
+/* 主体内容块 */
+.common-content-zone {
+  position: absolute;
+  left: 0;
+  top: 48px;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+  &::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    -webkit-border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 30px;
+    background-color: #999;
+    -webkit-border-radius: 7px;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 2px solid #fff;
+  }
+  &::-webkit-scrollbar {
+    width: 16px;
+    height: 10px;
+  }
+}
