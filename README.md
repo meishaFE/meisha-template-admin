@@ -41,9 +41,9 @@ polyfill方法采用的是[官方的方法中的第三种](https://cli.vuejs.org
 
 [点击查看](./generator/base/ESLINT.md)
 
-### vue配置
+### vue-cli3配置
 
-vue配置文件中配置了导出文件夹的名称以及公共scss文件的导入，注意导入的文件是`_index.scss`文件，如果新建了新的公共scss文件，需要自行导入到`_index.scss`文件中。
+vue-cli3配置文件中配置了导出文件夹的名称以及公共scss文件的导入，**注意导入的文件是`_index.scss`文件，如果新建了新的公共scss文件，需要自行导入到`_index.scss`文件中**。
 
 ### src源文件夹
 
@@ -67,8 +67,10 @@ vue配置文件中配置了导出文件夹的名称以及公共scss文件的导�
 
   - `action.js`存放的是ACTION操作。  
   - `mutation.js`存放的是MUTATION操作，**里面方法名全部以大写方式编写**。  
-  - `getters.js`存放的是GETTER操作。  
-  - `index.js`文件存放State的配置，并且导入以上文件初始化vuex。
+  - `getters.js`存放的是GETTER操作。 
+  - `state.js`存放的是State的配置。 
+  - `index.js`导入以上文件初始化vuex。
+ 
 
 #### utils文件夹
 
@@ -94,6 +96,12 @@ vue配置文件中配置了导出文件夹的名称以及公共scss文件的导�
 功能：导入其他文件，初始化日志系统（注意创建后需设置id），auth的cookie判断，全局变量设置，初始化Vue。
 
 ### 更新说明
+#### 07.25
+  1. 增加默认梅沙科技ico
+  2. scss中的iconfont拆分成单独文件
+  3. 不再引入后端iconfont，改成单独引入图片
+  4. store的index中的state拆分成单独文件 
+
 
 #### 07.24
   1. 添加无权限页面

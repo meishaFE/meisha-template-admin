@@ -57,7 +57,7 @@ if (!cookie) {
   handleNoLogin();
 }
 <%_ if(options.vuex){ _%>
-store.commit('setAuth', cookie);
+store.commit('SETAUTH', cookie);
 <%_ } else { _%>
 localStorage.setItem('auth', cookie);
 <%_ } _%>

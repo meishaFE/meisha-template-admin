@@ -3,8 +3,9 @@
     :class="{'hidden-menu': isCollapse}">
     <div class="toggle-menu-view">
       {{!isCollapse ? PROJECT_NAME : ''}}
-      <span class="iconfont icon-menu"
-        @click="toggleMenu"></span>
+      <span @click="toggleMenu">
+        <img src="@/assets/img/icon/icon_menu.png" class="menuIcon">
+      </span>
     </div>
     <el-menu :default-active="defaultActive"
       :default-openeds="defaultOpeneds"
@@ -23,6 +24,7 @@
             <i v-if="item.icon"
               class="iconfont"
               :class="`icon-${item.icon}`"></i>
+            <img v-else src="@/assets/img/icon/icon_default.png" class="menuIcon">
             <span slot="title">{{item.title}}</span>
           </template>
           <template v-for="(child, childIdx) in item.children">
@@ -55,6 +57,7 @@
             <i v-if="item.icon"
               class="iconfont"
               :class="`icon-${item.icon}`"></i>
+            <img v-else src="@/assets/img/icon/icon_default.png" class="menuIcon">
             <span slot="title">{{item.title}}</span>
           </template>
         </el-menu-item>
@@ -106,7 +109,7 @@ export default {
     onSelect (index, indexPath) {
       if (this.$route.path !== index) {
         this.$emit('select', arguments);
-        this.$router.push({path: index});
+        this.$router.push({ path: index });
       }
     },
     toggleMenu () {
@@ -124,9 +127,12 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-<%_ if(!options.sassPattern){ _%>
-@import "../assets/scss/index";
-<%_ } _%>
+.menuIcon{
+  height: 16px;
+}
+.iconfont,.menuIcon{
+  margin-right: 20px;
+}
 .view-menu {
     position: absolute;
     top: 50px;
@@ -159,11 +165,16 @@ export default {
             height: 48px;
             right: 0;
             top: 0;
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            text-align: center;
             @include font-style(16px, $fontColorDisable, 48px);
+            img{
+              margin-right: 0px;
+            }
         }
+        
     }
 }
 .el-submenu .el-menu-item {
@@ -173,4 +184,3 @@ export default {
     width: 64px;
 }
 </style>
-

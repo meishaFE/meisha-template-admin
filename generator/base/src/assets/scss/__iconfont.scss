@@ -1,0 +1,31 @@
+/* 将项目中的iconfont放入此处，以下代码为示例 */
+@font-face {
+  font-family: 'iconfont';
+  /* project id 311358 */
+  src: url('//at.alicdn.com/t/font_311358_thad2hal821n61or.eot');
+  src: url('//at.alicdn.com/t/font_311358_thad2hal821n61or.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_311358_thad2hal821n61or.woff') format('woff'),
+  url('//at.alicdn.com/t/font_311358_thad2hal821n61or.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_311358_thad2hal821n61or.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu::before {
+  content: "\e6c0";
+}
+
+.icon-message::before {
+  content: "\e6b7";
+}
+
+.icon-setting::before {
+  content: "\e643";
+}

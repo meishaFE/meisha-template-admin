@@ -1,13 +1,13 @@
 export const MENU_CONFIG = [
   {
     title: 'DEMO',
-    icon: 'message',
+    icon: 'message', // 将会自动生成类`icon-message`，需要在iconfont.scss设置字体unicode配合使用，若不设置则有默认图标 
     index: '/demo/test'
   },
   {
     title: '导航一',
     index: '1',
-    icon: 'message',
+    icon: 'setting',
     children: [
       {
         title: '分组一',
@@ -35,12 +35,10 @@ export const MENU_CONFIG = [
   },
   {
     title: '导航二',
-    index: '2',
-    icon: 'message'
+    index: '2'
   },
   {
     title: '导航三',
-    index: '3',
-    icon: 'setting'
+    index: '3'
   }
 ];
