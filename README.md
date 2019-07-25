@@ -28,7 +28,7 @@
 ## 模版结构以及对应功能
 模版结构图  
 
-![模版结构图](https://cdn.meishakeji.com/meisha_photo/test/2019-07-24/8788e26bf44c310e.png)
+![模版结构图](./img/structure.png)
 
 ### babel配置
 新模版使用的是babel7，配置基于旧模版babel（6.*）的配置，因此升级后尽量与以前保持一致。旧模版中使用的是preset-env与stage-2预设配置，vue-cli3中有一个默认的babel预设[@vue/babel-preset-app](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/babel-preset-app)，这个预设中就默认包含了env、stage3以及transform-runtime，与原配置不冲突，因此采用此预设。
