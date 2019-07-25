@@ -1,7 +1,7 @@
-const setAuth = (state, data) => {
+const SETAUTH = (state, data) => {
   state.auth = data;
 };
 
 export default {
-  setAuth
+  SETAUTH
 };

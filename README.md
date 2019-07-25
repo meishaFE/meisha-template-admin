@@ -22,7 +22,7 @@
   - elementUI，默认使用，若不使用需注意自定义组件将无法使用。
   - polyfill，能在环境中添加缺失的特性，默认不使用。
   - pre-commit for auto fix + format，旧模版功能，默认不使用。
-  - meishaWatch，梅沙日记系统，默认使用，项目创建后注意在`'./src/main.js'`中添加对应日记id值。
+  - meishaWatch，梅沙日志系统，默认使用，项目创建后注意在`'./src/main.js'`中添加对应日志id值。
   - 自动导入scss公共变量、mixin等，默认使用，使用后无需在样式内单独导入公共样式文件。
 
 ## 模版结构以及对应功能
@@ -39,7 +39,7 @@ polyfill方法采用的是[官方的方法中的第三种](https://cli.vuejs.org
 
 ### Eslint配置
 
-[点击查看](./ESLINT.md)
+[点击查看](./generator/base/ESLINT.md)
 
 ### vue配置
 
@@ -66,7 +66,7 @@ vue配置文件中配置了导出文件夹的名称以及公共scss文件的导�
 #### store文件夹
 
   - `action.js`存放的是ACTION操作。  
-  - `mutation.js`存放的是MUTATION操作。  
+  - `mutation.js`存放的是MUTATION操作，**里面方法名全部以大写方式编写**。  
   - `getters.js`存放的是GETTER操作。  
   - `index.js`文件存放State的配置，并且导入以上文件初始化vuex。
 
