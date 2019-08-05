@@ -195,18 +195,24 @@ export default {
 | logObj        | 参数对象，主要是请求的参数，根据各自项目而定       | Object  | - | - |
 
 
-## Dialog 弹窗
-在Element UI的pagination组件的基础上进行二次封装，有大、中、小三种规格
+## the-dialog 弹窗
+在Element UI的dialog组件的基础上进行二次封装，有small：460尺寸  normal: 900尺寸 large:1240尺寸三种尺寸
+
 ### Example
 ```html
-<vDialog :dialogObj="dialogObj">
-  <div slot="template">
+<the-dialog :dialogObj="dialogObj">
+  <div>
     这里是弹窗内容
   </div>
-</vDialog>
+  <div 
+    slot="infoView">
+    这里是弹窗已选择内容展示区域，不注入不展示
+  </div>
+</the-dialog>
 ```
+
 ```js
-import vDialog from '@/components/Dialog';
+import TheDialog from '@/components/the-dialog';
 
 export default {
   data() {
@@ -214,14 +220,17 @@ export default {
       title: '提示',
       content: '这是文本内容',
       dialogVisible: false,
-      type: 'A',
       modal: true,
+      type: 'small',
       isNeedCancel: true,
       confirmTxt: '确 定',
       cancelTxt: '取 消',
       confirmCall () {},
       cancelCall () {}
     }
+  },
+  components: {
+    TheDialog
   }
 }
 ```
@@ -238,7 +247,7 @@ export default {
 | content        | 弹窗文本内容       | String  | - | - |
 | modal        | 是否显示遮罩层       | Boolean  | - | true |
 | dialogVisible        | 弹窗显示隐藏标志位       | Boolean  | - | false |
-| type        | 弹窗类型       | String  | A:380尺寸  B:460尺寸 C:948尺寸 | - |
+| type        | 弹窗类型       | String  | small:460尺寸  normal:900尺寸 large:1240尺寸 | - |
 | isNeedCancel        | 是否显示取消按钮       | Boolean  | - | true |
 | confirmTxt        | 确认按钮文案       | String  | - | - |
 | cancelTxt        | 取消按钮文案       | String  | - | - |
@@ -249,6 +258,52 @@ export default {
 ### Slot
 | name        | 说明           |
 |------- | ------------------------------------ |
-| template        | 弹窗body内容插槽       |
+| defaults        | 弹窗body内容插槽       |
+| infoView        | 选择内容提示插槽       |
 | btnDefine        | 弹窗footer底部插槽，用来自定义按钮       |
 
+
+## ends-layout两端布局
+常用于左右两端布局的结构
+
+### Example
+```html
+<ends-layout>
+  <template slot="left">
+    <el-button size="small">按钮一</el-button>
+    <el-button size="small">按钮二</el-button>
+  </template>
+  
+  <template slot="right">
+    <el-button size="small">按钮三</el-button>
+  </template>
+</ends-layout>
+```
+
+```js
+import endsLayout from '@/components/ends-layout';
+
+export default {
+  data() {
+  },
+  components: {
+    endsLayout
+  }
+}
+```
+### API
+| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
+| ----------- | -------------- | ------- | ------------------------------------ | ------- |
+| hasInnerPadding        | 参数对象       | Boolean  | true,false | true |
+
+#### DialogObj
+
+| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
+| ----------- | -------------- | ------- | ------------------------------------ | ------- |
+| hasInnerPadding        | 是否有内边距（一般就弹窗内无）       | Boolean  | true,false | true |
+
+### Slot
+| name        | 说明           |
+|------- | ------------------------------------ |
+| left        | 左侧内容插槽       |
+| right        | 右侧插槽       |
