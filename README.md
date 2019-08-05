@@ -98,10 +98,10 @@ vue-cli3配置文件中配置了导出文件夹的名称以及公共scss文件�
 ### 更新说明
 
 #### 08.5
-  1.引入sass新的混合宏bem命名规则
-  2.加入两端布局组件`ends-layout.vue`
-  3.更新弹窗组件`the-dialog.vue`
-  4.组件命名规范修改，使用`xxx-xxx.vue`形式
+  1. 引入sass新的混合宏bem命名规则
+  2. 加入两端布局组件`ends-layout.vue`
+  3. 更新弹窗组件`the-dialog.vue`
+  4. 组件命名规范修改，使用`xxx-xxx.vue`形式
 
 #### 07.25
   1. 增加默认梅沙科技ico
