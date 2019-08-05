@@ -3,7 +3,8 @@
   - [Menu 菜单](#menu-%E8%8F%9C%E5%8D%95)
   - [Pagination 分页](#pagination-%E5%88%86%E9%A1%B5)
   - [Log 日志](#log-%E6%97%A5%E5%BF%97)
-  - [Dialog 弹窗](#dialog-%E5%BC%B9%E7%AA%97)
+  - [Dialog 弹窗](#the-dialog%20%E5%BC%B9%E7%AA%97)
+  - [ends-layout 布局](#ends-layout%E4%B8%A4%E7%AB%AF%E5%B8%83%E5%B1%80)
 
 ## Header 头部
 基于梅沙管理端设计规范定义的头部布局
@@ -294,13 +295,13 @@ export default {
 ### API
 | 参数        | 说明           | 类型    | 可选值                               | 默认值  |
 | ----------- | -------------- | ------- | ------------------------------------ | ------- |
-| hasInnerPadding        | 参数对象       | Boolean  | true,false | true |
+| hasInnerPadding        | 参数对象       | Boolean  | true/false | true |
 
 #### DialogObj
 
 | 参数        | 说明           | 类型    | 可选值                               | 默认值  |
 | ----------- | -------------- | ------- | ------------------------------------ | ------- |
-| hasInnerPadding        | 是否有内边距（一般就弹窗内无）       | Boolean  | true,false | true |
+| hasInnerPadding        | 是否有内边距（一般就弹窗内无）       | Boolean  | true/false | true |
 
 ### Slot
 | name        | 说明           |
