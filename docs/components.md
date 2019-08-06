@@ -5,6 +5,7 @@
   - [Log 日志](#log-%E6%97%A5%E5%BF%97)
   - [the-dialog 弹窗](#the-dialog%20%E5%BC%B9%E7%AA%97)
   - [ends-layout 布局](#ends-layout%E4%B8%A4%E7%AB%AF%E5%B8%83%E5%B1%80)
+  - [step-view 步骤](#step-view%20%E6%AD%A5%E9%AA%A4)
 
 ## Header 头部
 基于梅沙管理端设计规范定义的头部布局
@@ -281,6 +282,7 @@ export default {
 </ends-layout>
 ```
 
+
 ```js
 import endsLayout from '@/components/ends-layout';
 
@@ -292,19 +294,41 @@ export default {
   }
 }
 ```
-### API
-| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
-| ----------- | -------------- | ------- | ------------------------------------ | ------- |
-| hasInnerPadding        | 参数对象       | Boolean  | true/false | true |
-
-#### DialogObj
-
-| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
-| ----------- | -------------- | ------- | ------------------------------------ | ------- |
-| hasInnerPadding        | 是否有内边距（一般就弹窗内无）       | Boolean  | true/false | true |
 
 ### Slot
 | name        | 说明           |
 |------- | ------------------------------------ |
-| left        | 左侧内容插槽       |
-| right        | 右侧插槽       |
+| left        | 布局左侧的插槽       |
+| right        | 布局右侧的插槽       |
+
+## step-view步骤条
+分布操作的步骤展示
+
+### Example
+```html
+<step-view
+  :active="active"
+  :stepArr="stepArr">
+</step-view>
+```
+
+```js
+import stepView from '@/components/step-view';
+
+export default {
+  data() {
+    stepArr: ['步骤一', '步骤二'],
+    active: 0
+  },
+  components: {
+    stepView
+  }
+}
+```
+
+### API
+| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
+| ----------- | -------------- | ------- | ------------------------------------ | ------- |
+| stepArr     | 步骤数组       | Array  | - | [] |
+| active      | 当前步骤（从0开始）       | Number  | - | 0 |
+
