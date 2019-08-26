@@ -332,3 +332,185 @@ export default {
 | stepArr     | 步骤数组       | Array  | - | [] |
 | active      | 当前步骤（从0开始）       | Number  | - | 0 |
 
+
+## footer-view底部常驻组件
+底部常驻条，用于放置常用按钮和信息以及操作；由于菜单栏可收缩，所以需要计算属性isCollapse，来检测当前菜单栏状态
+
+### Example
+```html
+<footer-view>
+  <div>some info</div>
+</footer-view>
+```
+
+```js
+import footerView from '@/components/footer-view';
+
+export default {
+  components: {
+    footerView
+  }
+}
+```
+### Slot
+| name        | 说明           |
+|------- | ------------------------------------ |
+| default        | 展示的内容和操作信息       |
+
+
+## content-header标题信息布局组件
+标题信息展示布局，多用于内容块的头部信息展示
+
+### Example
+```html
+<content-header title="课程信息">
+  <button>右边按钮</button>
+</content-header>
+```
+
+```js
+import contentHeader from '@/components/content-header';
+
+export default {
+  components: {
+    contentHeader
+  }
+}
+```
+
+### API
+| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
+| ----------- | -------------- | ------- | ------------------------------------ | ------- |
+| title     | 标题       | String  | - | '' |
+
+### Slot
+| name        | 说明           |
+|------- | ------------------------------------ |
+| default        | 内容头部除标题外的其他信息      |
+
+
+## filter-form筛选栏信息布局组件
+筛选栏信息展示布局，多用于列表页的筛选框布局,默认三栏布局
+
+### Example
+```html
+<filter-form :form="filterForm">
+  <el-form-item label="日期一:">
+    <el-date-picker
+      v-model="filterForm.payTime"
+      type="daterange"
+      range-separator="至"
+      size="small"
+      @change="search"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期">
+    </el-date-picker>
+  </el-form-item>
+  <el-form-item label="日期二:">
+    <el-date-picker
+      v-model="filterForm.orderTime"
+      type="daterange"
+      range-separator="至"
+      size="small"
+      @change="search"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期">
+    </el-date-picker>
+  </el-form-item>
+  <el-form-item label="日期三:">
+    <el-date-picker
+      v-model="filterForm.classTime"
+      type="daterange"
+      range-separator="至"
+      size="small"
+      @change="search"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期">
+    </el-date-picker>
+  </el-form-item>
+</filter-form>
+```
+
+```js
+import filterForm from '@/components/filter-form';
+
+export default {
+  data () {
+    return {
+      filterForm: {
+        orderTime: '',
+        payTime: '',
+        classTime: ''
+      }
+    };
+  },
+  components: {
+    filterForm
+  }
+}
+```
+
+### API
+| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
+| ----------- | -------------- | ------- | ------------------------------------ | ------- |
+| form     | 筛选项所需model的对象集合       | Object  | - | {} |
+| isAverage     | 是否均分两栏布局       | Boolean  | true, false | false |
+
+### Slot
+| name        | 说明           |
+|------- | ------------------------------------ |
+| default        | 所有的筛选信息行.特殊说明，如果当前行需要整行展示，可给当前行加入一个类名`form-item--total` |
+
+## info-view,info-item内容信息展示布局组件
+内容信息展示布局，info-view用于外层父组件包裹元素，info-item用于单个分条展示的信息
+
+### Example
+```html
+<info-view :form="filterForm">
+  <info-item title="信息1:">
+    内容1
+  </info-item>
+  <info-item title="信息2:">
+    内容2
+  </info-item>
+  <info-item title="信息3:">
+    内容3
+  </info-item>
+</info-view>
+```
+
+```js
+import infoView from '@/components/info-view';
+import infoItem from '@/components/info-item';
+export default {
+  data () {
+    return {
+    };
+  },
+  components: {
+    infoView,
+    infoItem
+  }
+}
+```
+### infoView
+### API
+| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
+| ----------- | -------------- | ------- | ------------------------------------ | ------- |
+| hasInnerPadding     | 是否有内边距(弹层内一般没得)       | Boolean  | true,false | true |
+
+### Slot
+| name        | 说明           |
+|------- | ------------------------------------ |
+| default        | 放置展示子项信息列 |
+
+### infoItem
+### API
+| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
+| ----------- | -------------- | ------- | ------------------------------------ | ------- |
+| title     | label标题    | String  | - | '' |
+
+### Slot
+| name        | 说明           |
+|------- | ------------------------------------ |
+| default        | 展示的内容 |
