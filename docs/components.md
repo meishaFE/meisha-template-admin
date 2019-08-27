@@ -1,47 +1,39 @@
 # Components
-  - [Header 头部](#header-%E5%A4%B4%E9%83%A8)
+  - [the-header 头部](#header-%E5%A4%B4%E9%83%A8)
   - [Menu 菜单](#menu-%E8%8F%9C%E5%8D%95)
-  - [Pagination 分页](#pagination-%E5%88%86%E9%A1%B5)
-  - [Log 日志](#log-%E6%97%A5%E5%BF%97)
+  - [the-pagination 分页](#the-pagination-%E5%88%86%E9%A1%B5)
+  - [custom-log 日志](#custom-log-%E6%97%A5%E5%BF%97)
   - [the-dialog 弹窗](#the-dialog-%E5%BC%B9%E7%AA%97)
   - [ends-layout 布局](#ends-layout%E4%B8%A4%E7%AB%AF%E5%B8%83%E5%B1%80)
   - [step-view 步骤条](#step-view%E6%AD%A5%E9%AA%A4%E6%9D%A1)
-
-## Header 头部
-基于梅沙管理端设计规范定义的头部布局
+  - [custom-thead 自定义表头](#custom-thead-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E5%A4%B4)
+  - [select-input 选择输入框](#select-input-%E9%80%89%E6%8B%A9%E8%BE%93%E5%85%A5%E6%A1%86)
+## the-header 头部
+基于梅沙管理端设计规范定义的头部布局。  
+使用前提为使用vuex并且将userInfo存入state中。字段名、选项、方法全部写死，如有不同请进入组件内修改。
 
 ### Example
 ```html
-  <v-header :userInfo="userInfo" @logout="logout"></v-header>
+<the-header :title="title"></the-header>
 ```
 ```js
-import vHeader from '@/components/Header';
+import theHeader from '@/components/the-header';
 
 export default {
   data() {
-    userInfo: {}
-  },
-  methods: {
-    logout: () => {}
+    title: '梅沙工作平台'
   }
 }
 ```
 
-### API
+### Attributes
 | 参数        | 说明           | 类型    | 可选值                               | 默认值  |
 | ----------- | -------------- | ------- | ------------------------------------ | ------- |
 | title  | 项目名称 | String  | - | - |
-| rightLinks  | 右侧链接 | Array  | - | - |
-| userInfo  | 用户信息 | Object  | - | - |
-| userInfo.realname  | 用户名称 | String  | - | - |
-
-### Events
-| 事件名 | 说明           | 参数 |
-| ---- | -------------- |---|
-| logout | 退出 | - |
 
 ## Menu 菜单
-在Element UI的menu组件的基础上进行二次封装，映射关系参照config中的menu.js
+在Element UI的menu组件的基础上进行二次封装，映射关系参照config中的menu.js。  
+添加了默认icon。
 
 [el-menu组件文档链接](https://element.eleme.io/#/zh-CN/component/menu)
 
@@ -126,14 +118,14 @@ MENU_CONFIG示例
 | close   | sub-menu 收起的回调 | index: 收起的 sub-menu 的 index， indexPath: 收起的 sub-menu 的 index path |
 
 
-## Pagination 分页
+## the-pagination 分页
 在Element UI的pagination组件的基础上进行二次封装，有两种规格
 ### Example
 ```html
-<vPage :pageObj="pageObj" v-on:changePage="changePage"></vPage>
+<the-pagination :pageObj="pageObj" v-on:changePage="changePage"></the-pagination>
 ```
 ```js
-import vPage from '@/components/Pagination';
+import thePagination from '@/components/the-pagination';
 export default {
   data() {
     pageObj: {
@@ -145,16 +137,18 @@ export default {
   },
   methods: {
     changePage(val,type) {
-      if (type === 'gotoPage') { // 页码数改变
-        this.pageObj.currentPage = val;
-      } else { // 每页数量改变
-        this.pageObj.perPage = val;
+      if (type === 'gotoPage') { // 页数改变
+        this.tableobj.currentPage = val;
+      } else { // 每页展示数量改变
+        this.tableobj.currentPage = 1; // 注意重置或修改当前页数
+        this.tableobj.pageSize = val;
       }
+      this.getList();
     }
   }
 }
 ```
-### API
+### Attributes
 
 | 参数        | 说明           | 类型    | 可选值                               | 默认值  |
 | ----------- | -------------- | ------- | ------------------------------------ | ------- |
@@ -167,35 +161,67 @@ export default {
 | layOutString        | 组件布局       | String  | sizes, prev, pager, next, jumper, ->, total, slot | 'prev, pager, next, jumper, ->, total' |
 | isSmall        | 是否使用小型分页       | Boolean  | - | false |
 | pageTotal        | 总条目数       | Number  | - | - |
+| currentPage | 当前页数  | Number  | - | - |
+
 
 ### Events
 
 | 事件名 | 说明           | 参数 |
 | ---- | -------------- |---|
-| changePage   | 页码或者每页数量发生改变时的回调，参数为(perPage,gotoPage)；perPage 标志每页数量发生的改变；gotoPage 标志为去到第几页 | perPage,gotoPage |
+| changePage   | 页码或者每页数量发生改变时的回调，参数为(val,type)； perPage 标志每页数量发生的改变；gotoPage 标志为去到第几页 | val,type |
 
 
-## Log 日志
-对操作日志进行封装，调用统一的日志接口
+## custom-log 日志
+对操作日志进行封装
 ### Example
 ```html
-<vLog :logObj="logObj"></vLog>
+<custom-log 
+  :api="logApi"
+  ref="log"
+>
+  <!-- 默认slot -->
+  <template #default="{item}">
+    <span>{{item.explain}}</span>
+    <span>{{item.description}}</span>
+  </template>
+  <!-- Content slot -->
+  <template #content="{item}">{{item.explain}}</template>
+</custom-log>
 ```
 ```js
-import vLog from '@/components/Log';
+import customLog from '@/components/custom-log';
 
 export default {
   data() {
-    logObj: {}
+    api:CONFIG.API.LOGAPI //log api 地址
+  },
+  mounted () {
+    // 在获取完要传递的固定参数后主动启动，暂不支持动态参数
+    this.$refs.log.startGetLog({
+      merchantId: this.selectMerchant
+    });
   }
 }
 ```
-### API
+### Attributes
 
-| 参数        | 说明           | 类型    | 可选值                               | 默认值  |
-| ----------- | -------------- | ------- | ------------------------------------ | ------- |
-| logObj        | 参数对象，主要是请求的参数，根据各自项目而定       | Object  | - | - |
+| 参数  | 说明  | 类型 | 可选值  | 默认值  |
+| ------- | ----- | ---- | ----- | ------- |
+| api | api地址，必填 | String  | - | - |
+| time | 时间字段名 | String  | - | createTime |
+| name | 姓名字段名 | String  | - | operatorName |
+| explain | 详情字段名 | String  | - | explain |
 
+### Methods
+| name   | 说明   | 参数 |
+|------- | ----- | ---- |
+| startGetLog  | 主动调用开始请求日志列表，可将自定义请求参数传入，传入后翻页请求日志列表会自动带上设置的参数，若参数修改则需要重新调用。  | param(Object) |
+
+### Slot
+| name   | 说明   |
+|------- | ----- |
+| default  | 详情的内容  |
+| content  | 整行的内容  |
 
 ## the-dialog 弹窗
 在Element UI的dialog组件的基础上进行二次封装，有small：460尺寸  normal: 900尺寸 large:1240尺寸三种尺寸
@@ -328,7 +354,123 @@ export default {
 
 ### API
 | 参数        | 说明           | 类型    | 可选值                               | 默认值  |
-| ----------- | -------------- | ------- | ------------------------------------ | ------- |
+| ----------- | -------------- | ------- | ------------------------------------ | ----- -- |
 | stepArr     | 步骤数组       | Array  | - | [] |
 | active      | 当前步骤（从0开始）       | Number  | - | 0 |
+
+## custom-thead 自定义表头
+自定义表头组件，需要the-dialog组件。
+### Example
+```html
+<custom-thead :value="label" @labelChange="labelChange" icon="ic_custom"></custom-thead>
+```
+```js
+import customThead from '@/components/custom-thead';
+
+export default {
+  data() {
+    label: [ // 每一列的标题，isDiabled决定是否可选。
+      {
+        label: '订单信息',
+        isDisabled: true
+      },
+      {
+        label: '课程信息'
+      }
+    ],
+    showLabel: {}
+  },
+  methods: {
+    labelChange (val) {
+      this.showLabel = val; // 然后在每一列中添加 v-if = "showLabel[对应的label]",个人感觉可以有更好的方法，这样需要每一行都去手动设置一遍
+    },
+  }
+}
+```
+### Attributes
+
+| 参数  | 说明  | 类型 | 可选值  | 默认值  |
+| ------- | ----- | ---- | ----- | ------- |
+| value | 每一列的数据组成的数组，具体格式见下表 | Array  | - | - |
+| id | 由于自定义表头的缓存是按照路由名称来存储，若页面中有多个自定义表格，需要添加id属性 | String  | - | - |
+| isTip | 是否展示Tip | Boolean  | - | true |
+| icon | 显示的icon，默认为element的图标，设置后则添加iconfont类以及设置的icon类 | String  | - | - |
+| beforeClick | 开启之前的事件，只有返回true才会展示dialog框 | Function  | - | ()=>true |
+| beforeClose | 关闭之前的事件，只有返回true才会关闭dialog框 | Function  | - | ()=>true |
+
+### value's Object
+
+| 参数  | 说明  | 类型 | 可选值  | 默认值  |
+| ------- | ----- | ---- | ----- | ------- |
+| label | 这一列的名称 | String  | - | - |
+| isDisabled | 是否为不可选选项 | Boolean  | - | false |
+| tip | {title:‘提示的标题’,content:'提示的内容'}| Object  | - | - |
+
+### Events
+
+| 事件名 | 说明           | 参数 |
+| ---- | -------------- |---|
+| labelChange | 当用户修改了自定义表头后触发，返回更改后的表头数据 | labelData |
+
+### Slot
+| name   | 说明   |
+|------- | ----- |
+| default  | 按钮内的内容  |
+| content  | 展示的内容，替换了按钮  |
+
+
+## select-input 选择输入框
+自定义表头组件，需要the-dialog组件。
+### Example
+```html
+<select-input :selectList="selectInputList" @search="searchDetailList"></select-input>
+```
+```js
+import selectInput from '@/components/select-input';
+
+export default {
+  data() {
+    selectInputList: [{
+      value: 'orderId',
+      label: '订单号'
+    }, {
+      value: 'courseName',
+      label: '课程名称'
+    }, {
+      value: 'salesItem',
+      label: '销售项'
+    }]
+  },
+  methods: {
+    searchDetailList (input, select) {
+      if (input && select) { //只有在input值与select值都存在的时候进行搜索
+        this.searchItem = {
+          field: select,
+          value: input
+        };
+      }
+      this.getDetailList();
+    },
+  }
+}
+```
+### Attributes
+
+| 参数  | 说明  | 类型 | 可选值  | 默认值  |
+| ------- | ----- | ---- | ----- | ------- |
+| inputPlaceholder | input框中的placeHolder | String  | - | 请输入搜索内容 |
+| selectPlaceholder | select框中的placeHolder | String  | - | 请选择 |
+| value | 输入框的默认值，可加.sync进行同步 | -  | - | - |
+| selectValue | 设置后为select选择框的默认值，可加.sync进行同步 | - | - | - |
+| selectList | select中选择列表，必填 | Array  | - | - |
+| id | 缓存时采用路由名称进行记录，若同一个路由名称下有多个此组件，需加上id号进行区分 | - | - | - |
+| isChache | 是否进行缓存，默认值的优先顺序为：1.缓存值；2.selectValue值；3.selectList的第一条数据的值。 | Boolean  | - | true |
+
+### Events
+
+| 事件名 | 说明           | 参数 |
+| ---- | -------------- |---|
+| selectChange | 当select值出现了变化时触发，返回更新后的值 | selectValue |
+| search | 当用户进行搜索时触发，返回输入框与选择框中的值 | input,select |
+| clear | 当用户点击输入框清空按钮时触发 | - |
 
