@@ -656,3 +656,158 @@ export default {
 | name        | 说明           |
 |------- | ------------------------------------ |
 | default        | 展示的内容 |
+
+
+
+## driver.js 
+页面操作指引插件
+### Example
+```js
+import '@/components/driver/driver.scss';
+import Driver from '@/components/driver';
+
+export default {
+  data() {
+  },
+  methods: {
+    showDriver1 (input, select) {
+      const driver = new Driver({
+        showNextButtons: true,
+        nextBtnText: '下一步',
+        doneBtnText: '我知道了',
+        onReset: (ele) => {}
+      });
+      driver.defineSteps([{
+        element: '#some-element',
+        popover: {
+          description: 'Description',
+          position: 'bottom'
+        }
+      }]);
+      driver.start();
+    },
+    showDriver2 (input, select) {
+      const driver = new Driver();
+      driver.highlight({
+        element: '#some-element',
+        popover: {
+          title: 'Title for the Popover',
+          description: 'Description for it',
+          position: 'bottom',
+        }
+      });
+    },
+  }
+}
+```
+### Attributes
+
+| 参数  | 说明  | 类型 | 可选值  | 默认值  |
+| ------- | ----- | ---- | ----- | ------- |
+| className | className to wrap driver.js popover | String  | - | - |
+| animate | Animate while changing highlighted element| Boolean  | true/false | true |
+| opacity | Background opacity | Float  | >=1 |  0.75 |
+| padding | Distance of element from around the edges | Int | Int | 10 |
+| width | width of popover | Number | Number |  |
+| allowClose | Whether clicking on overlay should close or not | Boolean | true/false | true |
+| overlayClickNext | Should it move to next step on overlay click | Boolean | true/false | false |
+| doneBtnText | text on the final button | String | String | 'Done' |
+| closeBtnText | Text on the close button for this step | String | String | 'Close' |
+| nextBtnText | Next button text for this step | String | String | 'Next' |
+| prevBtnText | Previous button text for this step | String | String | 'Previous' |
+| showButtons | Do not show control buttons in footer | Boolean | Boolean | false |
+| keyboardControl | Allow controlling through keyboard (escape to close, arrow keys to move) | Boolean | Boolean | true |
+| onHighlightStarted | Called when element is about to be highlighted | Function | - |  |
+| onHighlighted | Called when element is fully highlighted | Function | - |  |
+| onDeselected | Called when element has been deselected | Function | - |  |
+| onReset | Called when overlay is about to be cleared | Function | - |  |
+| onNext | Called when moving to next step on any step | Function | - |  |
+| onPrevious | Called when moving to next step on any step | Function | - |  |
+|  |  |  | - |  |
+
+#### Driver 实例方法
+```js
+ const isActivated = driver.isActivated; // Checks if the driver is active or not
+ driver.moveNext();     // Moves to next step in the steps list
+ driver.movePrevious(); // Moves to previous step in the steps list
+ driver.start(stepNumber = 0);  // Starts driving through the defined steps
+ driver.highlight(string|stepDefinition); // highlights the element using query selector or the step definition
+ driver.reset(); // Resets the overlay and clears the screen
+ driver.hasHighlightedElement(); // Checks if there is any highlighted element
+ driver.hasNextStep(); // Checks if there is next step to move to
+ driver.hasPreviousStep(); // Checks if there is previous step to move to
+
+// // Prevents the current move. Useful in `onNext` or `onPrevious` if you want to
+// // perform some asynchronous task and manually move to next step
+driver.preventMove();
+
+// // Gets the currently highlighted element on screen
+const activeElement = driver.getHighlightedElement();
+const lastActiveElement = driver.getLastHighlightedElement();
+activeElement.getCalculatedPosition(); // Gets screen co-ordinates of the active element
+activeElement.hidePopover();  // Hide the popover
+activeElement.showPopover();  // Show the popover
+
+activeElement.getNode();  // Gets the DOM Element behind this element
+```
+
+## tag-panel 筛选信息展示
+列表筛选字段中被勾选的项，tag-panel 用与展示这些勾选项
+### Example
+```html
+<tag-panel :categoryList="multipleItemList" @delete="handleCloseTag"></tag-panel>
+```
+```js
+import TagPanel from '@/components/tag-panel';
+
+export default {
+  data() {
+     multipleItemList: []
+  },
+  methods: {
+    handleCloseTag (args) {
+      let prop = args.prop;
+
+      if (args.type === 'category') {
+
+      } else if (args.type === 'all') {
+
+      },
+    }
+  }
+```
+### Attributes
+
+| 参数  | 说明  | 类型 | 可选值  | 默认值  |
+| ------- | ----- | ---- | ----- | ------- |
+| categoryList | 各个字段中被勾选的项 | Array | [{ prop: fieldPropertyName, name: fieldLabel, tags: [ItemLabels], tagsId: [ItemIds] }] | [] |
+
+### Events
+
+| 事件名 | 说明           | 参数 |
+| ---- | -------------- |---|
+| delete | 清除单个字段或者所有字段 | { categoryList: [], type: 'all' }、{ categoryList: list, name: name, prop: prop, type: 'category'} |
+
+
+## message-box 操作确认弹窗
+根据管理交互规范改自 ELementUI 的 MessageBox。
+### Example
+```js
+// 在 main.js 将 message-box 挂载在Vue.prototype
+
+Vue.prototype.$ms_msgbox = MSMessageBox;
+Vue.prototype.$ms_alert = MSMessageBox.alert;
+Vue.prototype.$ms_confirm = MSMessageBox.confirm;
+Vue.prototype.$ms_prompt = MSMessageBox.prompt;
+```
+```js
+  // 根据交互规范，message-box不支持在“操作确认弹窗”添加 title
+  this.$ms_confirm(`message`, '', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    iconClass: 'icon-class'
+  })
+  .then(() => {})
+  .catch(() => {});
+```
+
