@@ -3,9 +3,14 @@ const path = require('path');
 <%_ } _%>
 
 module.exports = {
-  lintOnSave: false,
+  lintOnSave: process.env.NODE_ENV !== 'production',
+  runtimeCompiler: true,
   devServer: {
-    disableHostCheck: true
+    disableHostCheck: true,
+    overlay: {
+      warnings: true,
+      errors: true
+    }    
   },
   outputDir: '<%= options.buildName %>',
   <%_ if(options.sassPattern){ _%>

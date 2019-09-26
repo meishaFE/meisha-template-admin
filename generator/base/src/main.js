@@ -6,40 +6,41 @@
 import '@babel/polyfill';
 <%_ } _%>
 import Vue from 'vue';
+
 <%_ if(options.element){ _%>
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 <%_ } _%>
+
 import App from './App';
 
 <%_ if(options.router){ _%>
 import router from '@/router';
 <%_ } _%>
+
 <%_ if(options.vuex){ _%>
 import store from '@/store';
 <%_ } _%>
+
 import { $http, $type, filters, $cookie, $tool } from '@/utils';
 import * as CONFIG from '@/config';
 import './assets/scss/app.scss';
 import { handleNoLogin } from './utils/fetch';
+import MSMessageBox from '@/components/message-box';
 <%_ if(options.meishaWatch){ _%>
 import MeishaWatch from 'meisha-fe-watch';
-
 Vue.use(MeishaWatch.useVue());
 MeishaWatch.init({
   // 是否向后端提交MeishaWatch收集信息，默认为true，可自行检测当前环境，在开发、测试、预发布环境关闭，如：isReport: !/127.0.0.1|192.168|localhost|test-|pre-/.test(window.location.host)
-  //
-  isReport: !(CONFIG.ENV.TEST || CONFIG.ENV.DEV),
+  isReport: !CONFIG.ENV.DEV,
   // 向后端提交MeishaWatch收集信息的URL(必填，否则无法提交)
-  reportURL: (CONFIG.ENV.TEST || CONFIG.ENV.DEV) ? '//test-monitor.meishakeji.com/v1/fex/post_log' : '//pre-monitor.meishakeji.com/v1/fex/post_log',
-  projectId: null, // 日志系统设置的项目英文名（必填，否则无法提交）
-  partitionId: null // 日志系统设置的分区英文名称（必填，否则无法提交)
+  reportURL: (CONFIG.ENV.TEST || CONFIG.ENV.DEV) ? '//test-monitor.meishakeji.com/v1/fex/post_log' : '//monitor.meishakeji.com/v1/fex/post_log',
+  projectId: null // 日志系统设置的项目英文名（必填，否则无法提交）
 });
 <%_ } _%>
 
-
-
 Vue.use(filters);
+
 <%_ if(options.element){ _%>
 Vue.use(ElementUI);
 <%_ } _%>
@@ -79,6 +80,13 @@ window.CONFIG = CONFIG;
 window.$tool = $tool;
 window.$cookie = $cookie;
 window.MeishaWatch = MeishaWatch;
+
+// 自定义 MessageBox
+Vue.prototype.$ms_msgbox = MSMessageBox;
+Vue.prototype.$ms_alert = MSMessageBox.alert;
+Vue.prototype.$ms_confirm = MSMessageBox.confirm;
+Vue.prototype.$ms_prompt = MSMessageBox.prompt;
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

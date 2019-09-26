@@ -42,5 +42,15 @@ export const BASE_URL = getBaseUrl();
 
 // API 设置，请使用大写+下划线的的写法，例如：NAMES_LIKE_THIS
 export const API = {
-  LOGIN: '/login'
+  PUBLIC: {
+    LOGIN: '/login',
+    GET_PUBLIC_1: '/url',
+    GET_PUBLIC_2: '/url',
+    GET_PUBLIC_3: '/url'
+  },
+  MODULE_A: {
+    GET_STATE_A_1: 'url',
+    GET_STATE_A_2: 'url',
+    GET_STATE_A_3: 'url'
+  }
 };

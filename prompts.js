@@ -9,7 +9,8 @@ module.exports = [
     name:"buildName",
     type: "string",
     default: 'dist',
-    message: "请输入项目打包地址"
+    message: "请输入项目打包文件名"
+    // message: "请输入项目打包地址"
   },
   // {
   //   name:"description",

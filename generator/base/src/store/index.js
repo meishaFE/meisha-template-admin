@@ -1,18 +1,25 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as actions from './actions';
-import * as getters from './getters';
-import mutations from './mutations';
-import state from './state';
+
+// global 
+import state from './state.js';
+import getters from './getters.js';
+import mutations from './mutations.js';
+import actions from './actions.js';
+
+// module
+import moduleA from './module';
+
 
 Vue.use(Vuex);
 
-const debug = process.env.NODE_ENV !== 'production';
-
 export default new Vuex.Store({
   state,
-  mutations,
-  actions,
   getters,
-  strict: debug
+  mutations,
+  actions,  
+  module: {
+    moduleA
+  },
+  strict: process.env.NODE_ENV !== 'production'
 });
