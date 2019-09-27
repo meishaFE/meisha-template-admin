@@ -143,6 +143,6 @@ vue-cli3配置文件中配置了导出文件夹的名称以及公共scss文件�
   9.  更新文件名 `assets/scss/_function.scss` 为 `assets/scss/__function.scss`
   10. `custom-thead.vue` 添加 `bEnableSelectAll` 参数用于是否支持全选功能
   11. the-dialog 弹窗组件的 dialogObj 参数添加 hasBottomButton 属性 —— 是否显示弹窗底部“确定”，“取消”按钮。
-  12. 添加 `tag-panel.vue` 筛选信息展示组件, `the-menu.vue` 导航组件
-  13. 移除 `Menu.vue`,`Log.vue`
+  12. 移除 `Menu.vue`,`Log.vue`,`Head.vue`
+  13. 添加 `tag-panel.vue` 筛选信息展示组件, `the-menu.vue` 导航组件, `the-header.vue` 系统头部
   
