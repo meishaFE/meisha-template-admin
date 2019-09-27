@@ -1,7 +1,8 @@
 export const MENU_CONFIG = [
   {
     title: 'DEMO',
-    icon: 'message', // 将会自动生成类`icon-message`，需要在iconfont.scss设置字体unicode配合使用，若不设置则有默认图标 
+    // 将会自动生成类`icon-message`，需要在iconfont.scss设置字体unicode配合使用，若不设置则有默认图标
+    icon: 'message',
     index: '/demo/test'
   },
   {

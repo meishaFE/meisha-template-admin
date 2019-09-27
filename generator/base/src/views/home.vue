@@ -1,7 +1,8 @@
 <template>
   <section class="view-all">
-    <v-header class="view-top" :userInfo="userInfo" @logout="logout"></v-header>
-    <v-menu @collapse="toggleMenuCollapse"></v-menu>
+    <!-- <v-header class="view-top" :userInfo="userInfo" @logout="logout"></v-header> -->
+    <the-header class="view-top"></the-header>
+    <the-menu @collapse="toggleMenuCollapse"></the-menu>
     <div class="view-right" :class="{'is-change': isMenuColllapse}" v-loading="isLoading">
       <template v-if="$route.meta.keepAlive">
         <keep-alive>
@@ -16,8 +17,9 @@
 </template>
 
 <script>
-import vHeader from '@/components/Header.vue';
-import vMenu from '@/components/Menu.vue';
+// import vHeader from '@/components/Header.vue';
+import theHeader from '@/components/the-header.vue';
+import theMenu from '@/components/the-menu.vue';
 export default {
   name: 'Home',
   data () {
@@ -27,6 +29,7 @@ export default {
       isLoading: false
     };
   },
+
   methods: {
     toggleMenuCollapse (status) {
       this.isMenuColllapse = status;
@@ -38,17 +41,16 @@ export default {
       this.isLoading = !!isLoading;
     }
   },
+
   components: {
-    vHeader,
-    vMenu
+    // vHeader,
+    theHeader,
+    theMenu
   }
 };
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  <%_ if(!options.sassPattern){ _%>
-  @import "../assets/scss/index";
-  <%_ } _%>
   .view-all {
     overflow: hidden;
     position: absolute;

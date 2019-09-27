@@ -1,4 +1,4 @@
-const state = {
+export default {
   auth: null,
   public1: null,
   public2: null,

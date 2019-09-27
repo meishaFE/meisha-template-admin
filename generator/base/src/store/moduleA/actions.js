@@ -9,8 +9,6 @@ export default {
       return res.data;
     });
   },
-
-  
   GET_STATE_B (context, params) {
     return $http.get(API.MODULE_A.GET_STATE_B, params).then(res => {
       context.commit('SET_STATE_B', res.data);
@@ -24,4 +22,4 @@ export default {
       return res.data;
     });
   }
-}
+};
