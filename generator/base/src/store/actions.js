@@ -1,13 +1,23 @@
-import { $http } from '@/utils';
 import { API } from '@/config';
-export const logout = ({commit, state}) => {
-  console.log('logout success');
-};
+export default {
+  // mutate state
+  GET_PUBLIC_1 (context, params) {
+    return $http.get(API.PUBLIC.GET_PUBLIC_1, params).then(res => {
+      context.commit('SET_PUBLIC_1', res.data);
+      return res.data;
+    });
+  },
+  GET_PUBLIC_2 (context, params) {
+    return $http.get(API.PUBLIC.GET_PUBLIC_2, params).then(res => {
+      context.commit('SET_PUBLIC_2', res.data);
+      return res.data;
+    });
+  },
 
-export const login = ({ commit }, data) => {
-  console.log('login data =>');
-  console.log(data);
-  return $http.post(API.LOGIN, data).then(res => {
-
-  });
+  // just data fetching
+  GET_PUBLIC_3 (context, params) {
+    return Promise.resolve({ data: 'resData' }).then(res => {
+      return res.data;
+    });
+  }
 };

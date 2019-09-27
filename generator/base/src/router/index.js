@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import moduleA from './moduleA';
 Vue.use(Router);
 
 export default new Router({
@@ -15,19 +16,7 @@ export default new Router({
           name: 'Welcome',
           component: () => import('@/views/welcome')
         },
-        {
-          path: '/demo',
-          component: () => import('@/views/demo/home'),
-          children: [{
-            path: '/demo/test',
-            name: 'Test',
-            meta: {
-              activeSrc: '/demo/test',
-              keepAlive: true
-            },
-            component: () => import('@/views/demo/test')
-          }]
-        }
+        ...moduleA
       ]
     },
     {

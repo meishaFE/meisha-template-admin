@@ -127,3 +127,22 @@ vue-cli3配置文件中配置了导出文件夹的名称以及公共scss文件�
   8. filter添加空值检测
   9. 添加梅沙日志系统
   10. 添加scss公共变量导入
+
+#### 09.26
+  1. 添加 eslint 检测
+  2. vuex 的 module 结构
+  3. data.js 添加
+  4. router 分模块目录
+  5. elementUI 主题修改文件
+  6. 日志系统接入模版
+  7. 常用工具类完善
+     * 添加触发 toast的方法 `msg.suc, msg.err, msg.warn`
+     * 添加根据区号验证电话号码方法 `phoneCodeAndNumValidator`
+     * 添加深拷贝方法 `deepClone`
+  8. 添加 `generator\base\CHANGELOG.md` 文件, `generator\base\pulic\index.html` 文件
+  9.  更新文件名 `assets/scss/_function.scss` 为 `assets/scss/__function.scss`
+  10. `custom-thead.vue` 添加 `bEnableSelectAll` 参数用于是否支持全选功能
+  11. the-dialog 弹窗组件的 dialogObj 参数添加 hasBottomButton 属性 —— 是否显示弹窗底部“确定”，“取消”按钮。
+  12. 移除 `Menu.vue`,`Log.vue`,`Head.vue`
+  13. 添加 `tag-panel.vue` 筛选信息展示组件, `the-menu.vue` 导航组件, `the-header.vue` 系统头部
+  

@@ -1,0 +1,9 @@
+{
+  "name": "Meisha-Template-Admin",
+  "version": "1.0.0",
+  "description": "meisha template admin",
+  "main": "index.js",
+  "keywords": ["vue", "vue-cli"],
+  "author": "",
+  "license": "ISC"
+}

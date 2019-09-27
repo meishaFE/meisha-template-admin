@@ -7,7 +7,8 @@ $fontColorCoyness: #c0ccda; //颜色用于：不显眼的文字，无法选中�
 $fontColorWhite: #ffffff; //颜色用于：反白文字，带颜色
 //背景颜色
 $bgColorTip: #1f2d3d; //颜色用于：悬浮框文字提醒背景
-$bgColorNav: #324057; //颜色用于：顶部导航栏背景
+$bgColorNav: #ffffff; //颜色用于：顶部导航栏背景
+// $bgColorNav: #324057; //颜色用于：顶部导航栏背景
 $bgColorNavSelected: #d3dce6; //颜色用于：导航栏选中的背景
 $bgColorTableHeader: #e5e9f2; //颜色用于：表格的表头，侧边栏导航二级展开背景
 $bgColorDisabled: #ffffff; //颜色用于：禁用状态背景，侧边导航栏背景选择框选择选项的背景
@@ -30,3 +31,6 @@ $warnColorActive: #e3ab29; //警告active态
 $negativeColorHover: #ff8686; //
 $negativeColorNormal: #ff4949;
 $negativeColorActive: #e04141;
+
+// 删除按钮的颜色
+$deleteActionBtn: #F56C6C;

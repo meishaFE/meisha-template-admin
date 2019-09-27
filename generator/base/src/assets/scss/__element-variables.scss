@@ -1,0 +1,211 @@
+// 修改element的默认样式
+$--color-primary: #3D7AF8;
+$--color-success: #2AC96A;
+$--color-warning: #F6A13F;
+$--color-danger: #F66464;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+.el-breadcrumb__inner.is-link, .el-breadcrumb__inner a{
+  color: #606266;
+}
+.el-breadcrumb__item:last-child .el-breadcrumb__inner, .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover, .el-breadcrumb__item:last-child .el-breadcrumb__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover{
+  color: #909399;
+}
+.el-tabs--card > .el-tabs__header .el-tabs__item.is-active{
+  border:1px solid #3D7AF8;
+  border-radius: 4px 4px 0 0;
+}
+.el-tabs__header{
+  margin: 0;
+}
+
+.el-date-editor--daterange.el-input__inner{
+  width: 100%;
+  &.w-280 {
+    width: 280px;
+  }
+}
+// 表格样式重写
+.el-table th > .cell{
+  font-weight: normal;
+}
+.el-table thead.is-group th{
+  background: #ffffff;
+}
+.define-table .el-button--text{
+  padding: 5px 0 4px 0;
+}
+.el-table th, .el-table td {
+  padding: 13px 0;
+}
+// 表格文字溢出
+.el-table td .cell{
+  white-space: nowrap;
+}
+// 操作列文字操作指定宽度不省略
+.el-table td.action .cell{
+  white-space: normal;
+}
+//面包屑大写去除
+.el-breadcrumb__inner.is-link, .el-breadcrumb__inner a{
+  font-weight: normal;
+}
+// 时间选择分隔符文字显示不全问题
+.el-range-editor--small .el-range-separator{
+  min-width: 26px;
+}
+// tooltip样式重写
+.el-tooltip__popper.is-dark,
+.el-tooltip__popper.is-light{
+  background: #FFFFFF;
+  border: 1px solid #E4E7ED;
+  color: #313233;
+  .popper__arrow{
+    border-top-color: #E4E7ED;
+  }
+}
+.el-tooltip__popper{
+  max-width: 300px;
+}
+
+// dialog 样式覆盖
+.el-dialog__header {
+  padding: 13px 20px;
+  font-size: 16px;
+  border-bottom: 1px solid #EAEEF5;
+  .el-dialog__headerbtn {
+    top: 16px;
+  }
+}
+.el-dialog__body {
+  padding: 16px 20px 20px;
+}
+.el-dialog__footer {
+  text-align: center;
+}
+
+// 按钮样式覆盖
+.el-button{
+  font-weight: normal;
+
+  &.el-button--small {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+.el-button + .el-button{
+  margin-left: 10px!important;
+}
+.el-button--default{
+  color: #313233;
+}
+.el-button--primary{
+  color: #fff;
+}
+// input 样式覆盖
+.el-input__inner {
+  padding-left: 10px;
+}
+.el-input--small {
+  font-size: 14px;
+}
+// 表单 lable 样式
+.el-form-item__label{
+  color: #909399;
+}
+// 选择框样式
+.el-select {
+  .el-input {
+    font-size: 14px;
+  }
+}
+
+.el-dialog {
+  margin-top: 20vh !important;
+}
+
+// toast 样式覆盖
+.el-message{
+  color: #909399;
+  background-color: #F4F4F5;
+}
+.el-message--success {
+  background: #F0F9EB;
+  color: #67C23A;
+}
+.el-message--error {
+  background: #FFEFF0;
+  color: #F56F6E;
+}
+
+.el-message--warning {
+  background: #FDF6EC;
+  color: #E6A23C;
+}
+
+.el-tooltip__popper.is-light[x-placement^=top] .popper__arrow{
+  border-top-color: #E4E7ED;
+}
+.el-tooltip__popper.is-light[x-placement^=top] .popper__arrow::after{
+  border-top-color: #FFF;
+}
+.el-tooltip__popper.is-dark[x-placement^=top] .popper__arrow::after{
+  border-top-color:#E4E7ED
+}
+.el-tooltip__popper.is-dark[x-placement^=top] .popper__arrow::after{
+  border-top-color:#FFF
+}
+.el-tooltip__popper.is-dark[x-placement^=bottom] .popper__arrow{
+  border-bottom-color:#E4E7ED
+}
+.el-tooltip__popper.is-dark[x-placement^=bottom] .popper__arrow::after{
+  border-bottom-color:#FFF
+}
+.el-tooltip__popper.is-dark[x-placement^=left] .popper__arrow{
+  border-left-color:#E4E7ED
+}
+.el-tooltip__popper.is-dark[x-placement^=left] .popper__arrow::after{
+  border-left-color:#FFF
+}
+.el-tooltip__popper.is-dark[x-placement^=right] .popper__arrow{
+  border-right-color:#E4E7ED
+}
+.el-tooltip__popper.is-dark[x-placement^=right] .popper__arrow::after{
+  border-right-color:#FFF
+}
+
+// tab 样式覆盖
+.el-tabs__nav-wrap::after {
+  height: 1px;
+  background-color: #EAEEF5;
+}
+
+// radio 样式覆盖
+.el-radio-button__inner { // @CRM数据统计版本和设计沟通过，不管组件的大小，字体都是14px  By PR
+  font-size: 14px !important;
+  padding: 8px 15px !important;
+  color: #313233;
+}
+.el-radio-button {
+  .el-radio-button__inner:hover {
+    color: #3D7AF8;
+  }
+  .el-radio-button__orig-radio:checked+.el-radio-button__inner {
+    background-color: #fff;
+    border-color: #3D7AF8;
+    color: #3D7AF8;
+  }
+}
+
+// dateRange 样式覆盖
+.el-range-input {
+  font-size: 14px !important;
+}
+.el-range-separator {
+  font-size: 14px !important;
+}
+

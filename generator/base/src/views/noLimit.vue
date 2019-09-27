@@ -39,7 +39,7 @@ export default {
     gotoAccount () {
       let accountBase = $tool.getSystemAddress();
       window.location.href = (accountBase + 'index');
-    },
+    }
   },
   components: {
     vHeader

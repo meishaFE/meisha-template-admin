@@ -5,25 +5,26 @@
       :modal="dialogObj.modal"
       :before-close="handleClose"
       :visible.sync="dialogObj.dialogVisible"
-      :class="'the-dialog__' + dialogObj.type">
+      :class="'the-dialog__' + dialogObj.type.toLowerCase()">
       <div class="the-dialog__content">
         <slot name="content"></slot>
       </div>
       <div slot="footer"
+        v-if = "dialogObj.hasBottomButton"
         class="the-dialog__footer">
         <template v-if="!hasBtnDefineSlot">
           <div v-if="$slots.infoView" class="the-dialog__info">
             <slot name="infoView"></slot>
           </div>
           <div class="the-dialog__btn">
-            <el-button 
-              type="primary" 
+            <el-button
+              type="primary"
               size="small"
-              @click="sure" 
+              @click="sure"
               :loading="!btnFlag">
               {{dialogObj.confirmTxt || '确 定'}}
             </el-button>
-            <el-button 
+            <el-button
               size="small"
               v-if="dialogObj.isNeedCancel"  @click="handleClose">
               {{dialogObj.cancelTxt || '取 消'}}
@@ -40,7 +41,7 @@
 <script>
 /**
  * desc: 弹窗二次封装
- * param: dialogObj->弹窗数据对象 
+ * param: dialogObj->弹窗数据对象
  * 格式：{
           title: '提示',
           content: '这是文本内容',
@@ -65,12 +66,14 @@ export default {
       type: Object,
       default () {
         return {
+          hasBottomButton: true,
           title: '提示',
           dialogVisible: true,
           type: 'normal',
           isNeedCancel: true,
           confirmTxt: '确 定',
           cancelTxt: '取 消',
+          modal: true,
           confirmCall () {},
           cancelCall () {}
         };
@@ -88,7 +91,9 @@ export default {
     },
     sure () {
       if (this.btnFlag) {
-        this.dialogObj.confirmCall();
+        if (this.dialogObj.confirmCall) {
+          this.dialogObj.confirmCall();
+        }
       }
     },
     handleClose () {
@@ -101,6 +106,7 @@ export default {
 };
 </script>
 <style lang="scss" rel="stylesheet/scss">
+@import "../assets/scss/index";
   //弹窗样式改造
   @include b(the-dialog){
     @include e(small){
@@ -116,11 +122,14 @@ export default {
     @include e(large){
       width: 1240px;
     }
+    .the-dialog__btn {
+      font-size: 0px;
+    }
     .el-dialog__header{
       padding: 0 0 0 20px;
       height: 50px;
       background: #FFFFFF;
-      box-shadow: inset 0 -1px 0 0 #EAEEF5;
+      // box-shadow: inset 0 -1px 0 0 #EAEEF5;
     }
     .el-dialog__title{
       line-height: 50px;
@@ -138,21 +147,34 @@ export default {
     }
     .el-dialog__footer{
       padding: 0;
-      text-align: center;
     }
     @include e(content){
       padding: 20px;
       max-height: 488px;
-      min-height: 100px;
+      overflow-y: auto;
     }
     @include e(info){
-      margin-bottom: 10px; 
+      margin-bottom: 10px;
       text-align: center;
     }
     @include e(footer){
       background: #FFFFFF;
       box-shadow: inset 0 1px 0 0 #EBEEF5;
       padding: 15px 0;
+    }
+    //A类弹窗
+    .the-dialog__a /deep/ .el-dialog{
+      width: 380px;
+    }
+
+    //B类弹窗
+    .the-dialog__b /deep/ .el-dialog{
+      width: 460px;
+    }
+
+    //C类弹窗
+    .the-dialog__c /deep/ .el-dialog{
+      width: 948px;
     }
   }
 </style>

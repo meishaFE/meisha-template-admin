@@ -1,6 +1,6 @@
 # Components
   - [the-header 头部](#header-%E5%A4%B4%E9%83%A8)
-  - [Menu 菜单](#menu-%E8%8F%9C%E5%8D%95)
+  - [the-menu 菜单](#menu-%E8%8F%9C%E5%8D%95)
   - [the-pagination 分页](#the-pagination-%E5%88%86%E9%A1%B5)
   - [custom-log 日志](#custom-log-%E6%97%A5%E5%BF%97)
   - [the-dialog 弹窗](#the-dialog-%E5%BC%B9%E7%AA%97)
@@ -8,13 +8,14 @@
   - [step-view 步骤条](#step-view%E6%AD%A5%E9%AA%A4%E6%9D%A1)
   - [custom-thead 自定义表头](#custom-thead-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E5%A4%B4)
   - [select-input 选择输入框](#select-input-%E9%80%89%E6%8B%A9%E8%BE%93%E5%85%A5%E6%A1%86)
+
 ## the-header 头部
 基于梅沙管理端设计规范定义的头部布局。  
 使用前提为使用vuex并且将userInfo存入state中。字段名、选项、方法全部写死，如有不同请进入组件内修改。
 
 ### Example
 ```html
-<the-header :title="title"></the-header>
+<!-- <the-header :title="title"></the-header> -->
 ```
 ```js
 import theHeader from '@/components/the-header';
@@ -31,7 +32,7 @@ export default {
 | ----------- | -------------- | ------- | ------------------------------------ | ------- |
 | title  | 项目名称 | String  | - | - |
 
-## Menu 菜单
+## the-menu 菜单
 在Element UI的menu组件的基础上进行二次封装，映射关系参照config中的menu.js。  
 添加了默认icon。
 
@@ -39,10 +40,10 @@ export default {
 
 ### Example
 ```html
-  <v-menu :router="router" @collapse="toggleMenuCollapse"></v-menu>
+  <the-menu :router="router" @collapse="toggleMenuCollapse"></the-menu>
 ```
 ```js
-import vMenu from '@/components/Menu';
+import theMenu from '@/components/the-menu';
 
 export default {
   data() {
@@ -84,7 +85,7 @@ MENU_CONFIG示例
 | ----------- | -------------- | ------- | ------------------------------------ | ------- |
 | router        | 是否使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转       | boolean  | - | true |
 
-### Menu组件内部data参数
+### the-menu组件内部data参数
 | 参数        | 说明           | 类型    | 可选值                               | 默认值  |
 | ----------- | -------------- | ------- | ------------------------------------ | ------- |
 | defaultActive | 默认active状态的菜单index值  | String  | - | - |
@@ -246,6 +247,7 @@ export default {
   data() {
     dialogObj: {
       title: '提示',
+      hasBottomButton: true,
       content: '这是文本内容',
       dialogVisible: false,
       modal: true,
@@ -272,6 +274,7 @@ export default {
 | 参数        | 说明           | 类型    | 可选值                               | 默认值  |
 | ----------- | -------------- | ------- | ------------------------------------ | ------- |
 | title        | 弹窗标题       | String  | - | - |
+| hasBottomButton        | 是否显示底部“确认/取消”操作按钮       | Boolean  | Boolean | true |
 | content        | 弹窗文本内容       | String  | - | - |
 | modal        | 是否显示遮罩层       | Boolean  | - | true |
 | dialogVisible        | 弹窗显示隐藏标志位       | Boolean  | - | false |
@@ -391,6 +394,7 @@ export default {
 
 | 参数  | 说明  | 类型 | 可选值  | 默认值  |
 | ------- | ----- | ---- | ----- | ------- |
+| bEnableSelectAll | 是否支持全选 | Boolean  | Boolean | false |
 | value | 每一列的数据组成的数组，具体格式见下表 | Array  | - | - |
 | id | 由于自定义表头的缓存是按照路由名称来存储，若页面中有多个自定义表格，需要添加id属性 | String  | - | - |
 | isTip | 是否展示Tip | Boolean  | - | true |
@@ -723,7 +727,7 @@ export default {
 | onReset | Called when overlay is about to be cleared | Function | - |  |
 | onNext | Called when moving to next step on any step | Function | - |  |
 | onPrevious | Called when moving to next step on any step | Function | - |  |
-|  |  |  | - |  |
+
 
 #### Driver 实例方法
 ```js
@@ -810,4 +814,63 @@ Vue.prototype.$ms_prompt = MSMessageBox.prompt;
   .then(() => {})
   .catch(() => {});
 ```
+
+## auto-collapse 收起隐藏，展开显示全部
+用于显示某个模块的局部或全部。
+1. 默认模块中的内容超过了设定的高度，显示“展开/收起”按钮，点击“展开/收起”按钮显示全部或隐藏超出的部分
+2. 默认模块中的内容小于设定的高度，不显示“展开/收起”按钮
+3. 窗口改变大小，模块中的数据发生变化，默认模块中的内容高度发生变化，走步骤1，步骤2的判断逻辑。
+   
+### Example
+```html
+<auto-collapse
+  :eleHeight = '28'
+  :subtractedHeight = '12'
+  :title = "'商户标签'"
+>
+  html content
+</auto-collapse>
+```
+
+### Attributes
+
+| 参数  | 说明  | 类型 | 可选值  | 默认值  |
+| ------- | ----- | ---- | ----- | ------- |
+| bListenToResize | 是否监听window.resize事件来显示隐藏“展开/收起”按钮， 当auto-caollapse 处于隐藏状态，这个时候改变窗口大小getCurHeight 会返回0，在不需要根据窗口大小动态改变和处于隐藏时取消监听，显示后才开始坚定 | Boolean | Boolean | true |
+| bShowTitle | 是否在左侧显示标题 | Boolean | Boolean | true |
+| title | 标题 | String | String | 'Untitled' |
+| eleHeight | 模块显示的最小高度 | Number | Number | 28 |
+| subtractedHeight | subtractedHeight 是元素高度的“不计高度”(例如: margin) | Number | Number | 10 |
+| disableCollapseBtn | 禁点“展开/收起”按钮  | Boolean | Boolean | false |
+
+### Slot
+| name        | 说明      |
+|------------ | -------  |
+| default     | 显示内容   |
+
+
+## the-menu 导航
+系统左部导航, ElementUI 中的 NavMenu 二次封装(https://element.eleme.cn/#/zh-CN/component/menu)
+   
+### Example
+```html
+<the-menu 
+  @collapse="toggleMenuCollapse" 
+  :menuConfig = "menuConfig"
+>
+</the-menu>
+```
+
+### Attributes
+
+| 参数  | 说明  | 类型 | 可选值  | 默认值  |
+| ------- | ----- | ---- | ----- | ------- |
+| menuConfig | 导航模块 | Array | - | - |
+| router | 是否使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转 | Array | - | - |
+
+### Events
+
+| 事件名    | 说明           | 参数       | 可选值    |
+| -------- | ------------- | -----------| ------- |
+| collapse | 切换导航视图大小 | isCollapse | Boolean |
 
