@@ -6,7 +6,7 @@
     :before-close="handleClose"
     :visible.sync="dialogObj.dialogVisible"
     :class="['the-dialog__' + dialogObj.type.toLowerCase(), dialogObj.customClass]">
-    <div class="the-dialog__content">
+    <div class="the-dialog__content" :class="dialogObj.hasBottomButton ? 'maxHeight487' : 'maxHeight549'">
       <slot name="content"></slot>
     </div>
     <div slot="footer"
@@ -124,7 +124,7 @@ export default {
     }
     @include e(normal){
       .el-dialog{
-        width: 960px;
+        width: 900px;
       }
     }
     @include e(large){
@@ -154,8 +154,6 @@ export default {
       text-align: center;
     }
     .el-dialog__body{
-      // 整个弹窗高度为 600，减去弹窗底部和底部后的高度为487px
-      max-height: 487px;
       padding: 0;
       overflow: auto;
     }
@@ -164,8 +162,14 @@ export default {
     }
     @include e(content){
       padding: 20px;
-      max-height: 488px;
       overflow-y: auto;
+      // 整个弹窗高度为 600，减去弹窗底部和底部后的高度为487px
+      &.maxHeight487 {
+        max-height: 487px;
+      }
+      &.maxHeight549 {
+        max-height: 549px;
+      }
     }
     @include e(info){
       margin-bottom: 10px;
@@ -175,20 +179,6 @@ export default {
       background: #FFFFFF;
       box-shadow: inset 0 1px 0 0 #EBEEF5;
       padding: 15px 0;
-    }
-    //A类弹窗
-    .the-dialog__a /deep/ .el-dialog{
-      width: 380px;
-    }
-
-    //B类弹窗
-    .the-dialog__b /deep/ .el-dialog{
-      width: 460px;
-    }
-
-    //C类弹窗
-    .the-dialog__c /deep/ .el-dialog{
-      width: 948px;
     }
   }
 </style>

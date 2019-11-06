@@ -124,7 +124,7 @@ export default {
     vertical-align: top;
   }
 }
-/deep/.el-dropdown-menu__item{
+::v-deep .el-dropdown-menu__item{
   line-height: 34px;
   width: 151px;
   color: #606266;

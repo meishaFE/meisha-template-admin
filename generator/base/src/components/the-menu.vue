@@ -197,7 +197,7 @@ export default {
 
      // NOTE： 只有二级导航的菜单也需要向左移动 4px
     .el-menu-item,
-    /deep/.el-submenu__title{
+    ::v-deep .el-submenu__title{
       height: 50px;
       line-height: 50px;
       color: #606266;

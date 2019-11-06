@@ -9,7 +9,7 @@
     <div class="test__section">
       <h1 class="test__section-title">日志组件</h1>
       <div>
-        <vLog :logObj="logObj"></vLog>
+        <the-log :logObj="logObj"></the-log>
       </div>
     </div>
     <div class="test__section">
@@ -24,7 +24,7 @@
 
 <script>
 import thePage from '@/components/the-pagination';
-import vLog from '@/components/Log';
+import theLog from '@/components/custom-log';
 import theDialog from '@/components/the-dialog';
 
 export default {
@@ -35,7 +35,7 @@ export default {
         name: '首页',
         to: '/'
       }, {
-        name: 'DEMO',
+        name: '组件',
         to: {}
       }],
       pageObj: {
@@ -79,7 +79,7 @@ export default {
   },
   components: {
     thePage,
-    vLog,
+    theLog,
     theDialog
   }
 };

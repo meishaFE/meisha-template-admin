@@ -119,19 +119,19 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-/deep/.el-input-group__prepend{
+::v-deep .el-input-group__prepend{
   background-color: #fff;
 }
-/deep/.el-select .el-input{
+::v-deep .el-select .el-input{
   width: 100px;
 }
-/deep/.el-input__inner{
+::v-deep .el-input__inner{
   border-left:0;
 }
-/deep/.el-input__inner:focus{
+::v-deep .el-input__inner:focus{
   border-color: #dcdfe6;
 }
-/deep/.el-input__inner:hover{
+::v-deep .el-input__inner:hover{
   border-color: #dcdfe6;
 }
 </style>

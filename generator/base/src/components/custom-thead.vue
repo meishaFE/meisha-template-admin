@@ -274,7 +274,7 @@ export default {
       margin-bottom: 15px;
       display: flex;
       align-items: center;
-      /deep/.el-checkbox__label{
+      ::v-deep .el-checkbox__label{
         max-width: 116px;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -295,11 +295,11 @@ export default {
     display: block;
     margin-bottom: 6px;
   }
-  /deep/.the-dialog__content{
+  ::v-deep .the-dialog__content{
     padding-bottom: 5px;
     min-height: unset;
   }
-  /deep/.the-dialog .el-dialog__header{
+  ::v-deep .the-dialog .el-dialog__header{
     text-align: left;
   }
   .el-icon-setting{
