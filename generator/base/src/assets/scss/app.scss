@@ -74,3 +74,31 @@
     height: 10px;
   }
 }
+
+// 两列布局样式
+.view-all {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-width: 1103px;
+
+  .view-top{
+    position: relative;
+    z-index: 1000;
+  }
+  .view-right{
+    position: absolute;
+    top: 50px;
+    left: 180px;
+    right: 0;
+    bottom: 0;
+    background: #f0f2f5;
+    @include transition(left .3s ease);
+    &.is-change {
+      left: 48px;
+    }
+  }
+}

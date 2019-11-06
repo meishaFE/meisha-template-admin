@@ -1,9 +1,9 @@
 <template>
-  <div class = 'module-A-1'>module-A-1</div>
+  <div class = 'module-B'>module-B</div>
 </template>
 <script>
 export default {
-  name: 'module-A-1'
+  name: 'module-B'
 };
 </script>
 <style lang="sass" scoped>

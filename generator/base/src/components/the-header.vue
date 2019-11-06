@@ -113,6 +113,16 @@ export default {
     color: #C0C4CC;
     padding-left: 4px;
   }
+
+  .vhd-link__name,
+  .vhd-link__form {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 120px;
+    display: inline-block;
+    vertical-align: top;
+  }
 }
 /deep/.el-dropdown-menu__item{
   line-height: 34px;

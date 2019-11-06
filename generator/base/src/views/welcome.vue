@@ -17,9 +17,6 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  <%_ if(!options.sassPattern){ _%>
-  @import "../assets/scss/index";
-  <%_ } _%>
   .welcome-page {
     padding-top: 140px;
     .txt-center {
@@ -30,4 +27,3 @@ export default {
     }
   }
 </style>
-

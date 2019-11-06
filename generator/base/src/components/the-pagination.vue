@@ -6,7 +6,7 @@
       @prev-click="handleCurrentChange"
       @next-click="handleCurrentChange"
       :current-page="pageObj.currentPage"
-      :small = "pageObj.isSamll"
+      :small="pageObj.isSmall"
       :page-sizes="pageSizeArr"
       :page-size="pageSize"
       :layout="pageObj.layOutString"
@@ -22,7 +22,7 @@
 // changePage：页码或者每页数量发生改变时调用的函数，perPage 标志每页数量发生的改变，gotoPage 标志为去到第几页
 import { PAGE } from '@/config/index';
 export default {
-  name: 'Pagination',
+  name: 'the-pagination',
   methods: {
     handleSizeChange (val) {
       this.$emit('changePage', val, 'perPage');
@@ -56,11 +56,7 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  <%_ if(!options.sassPattern){ _%>
-  @import "../assets/scss/index";
-  <%_ } _%>
   .page-opera-view{
       text-align: right;
   }
 </style>
-

@@ -128,7 +128,6 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-// @import "../assets/scss/index";
 @include b(view-menu) {
   position: absolute;
   top: 50px;
@@ -169,6 +168,7 @@ export default {
   &.hidden-menu {
     width: 48px;
   }
+
   // 重写样式
   .el-menu {
     top: 48px;
@@ -181,8 +181,6 @@ export default {
     padding-bottom: 40px;
     .el-menu-item {
       // NOTE: 当菜单收起的时候，如果存在一级导航，它的名称气泡会在 180px 以外
-      // min-width: 180px;
-      // text-indent: 8px;
       color: #606266;
       &.is-active{
         background:  rgba(61,122,248,0.10);
@@ -196,16 +194,27 @@ export default {
         text-indent: 8px;
       }
     }
-  }
-  // NOTE： 只有一级导航的菜单也需要向左移动 4px
-  .el-menu > .el-menu-item,
-  .el-menu /deep/.el-submenu__title{
-    height: 50px;
-    line-height: 50px;
-    color: #606266;
-    display: flex;
-    align-items: center;
-    margin-left: -4px;
+
+     // NOTE： 只有二级导航的菜单也需要向左移动 4px
+    .el-menu-item,
+    /deep/.el-submenu__title{
+      height: 50px;
+      line-height: 50px;
+      color: #606266;
+      display: flex;
+      align-items: center;
+      margin-left: -4px;
+    }
+
+      // 导航中的 icon
+    .view-menu__iconfont,
+    .view-menu__menuIcon {
+      margin-right: 16px;
+      font-size: 16px;
+      width: 16px;
+      line-height: 16px;
+      display: inline-block;
+    }
   }
 }
 </style>

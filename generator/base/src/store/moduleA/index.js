@@ -4,7 +4,7 @@ import actions from './actions.js';
 import mutations from './mutations.js';
 
 export default {
-  namespace: true,
+  namespaced: true,
   state,
   getters,
   actions,

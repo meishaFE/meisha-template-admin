@@ -145,4 +145,14 @@ vue-cli3配置文件中配置了导出文件夹的名称以及公共scss文件�
   11. the-dialog 弹窗组件的 dialogObj 参数添加 hasBottomButton 属性 —— 是否显示弹窗底部“确定”，“取消”按钮。
   12. 移除 `Menu.vue`,`Log.vue`,`Head.vue`
   13. 添加 `tag-panel.vue` 筛选信息展示组件, `the-menu.vue` 导航组件, `the-header.vue` 系统头部
-  
+#### 10.31
+  1. 更正 body 字体的font-family
+  2. 更换导航图标 assets/img/icon/icon_menu.png
+  3. 更正 vuex 命名空间属性名
+  4. 添加上传图片组件 upload-image
+  5. 重命名 `Pagination` 为 `the-pagination`
+  6. 移除 Header.vue 组件，使用过 Header.vue 的模块中用 the-header.vue 替换
+  7. 移除 Dialog.vue, 修改the-dialog.vue
+  8. 添加搜索组件 `select-input.vue`
+  9. 添加左侧导航demo，和修改导航样式
+  10. 修改 the-header.vue 的样式

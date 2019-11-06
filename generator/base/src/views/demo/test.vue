@@ -3,7 +3,7 @@
     <div class="test__section">
       <h1 class="test__section-title">分页组件</h1>
       <div>
-        <vPage :pageObj="pageObj" @changePage="changePage"></vPage>
+        <thePage :pageObj="pageObj" @changePage="changePage"></thePage>
       </div>
     </div>
     <div class="test__section">
@@ -18,14 +18,14 @@
         <el-button @click="dialogObj.dialogVisible = true">弹窗</el-button>
       </div>
     </div>
-    <v-dialog :dialogObj="dialogObj"></v-dialog>
+    <the-dialog :dialogObj="dialogObj"></the-dialog>
   </section>
 </template>
 
 <script>
-import vPage from '@/components/Pagination';
+import thePage from '@/components/the-pagination';
 import vLog from '@/components/Log';
-import vDialog from '@/components/Dialog';
+import theDialog from '@/components/the-dialog';
 
 export default {
   name: 'Test',
@@ -78,9 +78,9 @@ export default {
     }
   },
   components: {
-    vPage,
+    thePage,
     vLog,
-    vDialog
+    theDialog
   }
 };
 </script>
@@ -100,6 +100,3 @@ export default {
   border-left: 4px solid #20a0ff;
 }
 </style>
-
-
-
