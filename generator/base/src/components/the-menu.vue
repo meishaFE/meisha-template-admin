@@ -1,10 +1,10 @@
 <template>
-  <section class="view-menu"
+  <section class="the-menu"
     :class="{'hidden-menu': isCollapse}">
-    <div class="view-menu__toggle-view">
+    <div class="the-menu__toggle-view">
       {{!isCollapse ? PROJECT_NAME : ''}}
-      <span @click="toggleMenu" class="view-menu__toggle-span">
-        <img src="@/assets/img/icon/icon_menu.png" class="view-menu__menuIcon">
+      <span @click="toggleMenu" class="the-menu__toggle-span">
+        <img src="@/assets/img/icon/icon_menu.png" class="the-menu__menuIcon">
       </span>
     </div>
     <el-menu :default-active="defaultActive"
@@ -22,7 +22,7 @@
           <template v-if="item.title"
             slot="title">
             <i v-if="item.icon"
-              class="iconfont view-menu__iconfont"
+              class="iconfont the-menu__iconfont"
               :class="item.icon"></i>
             <span slot="title">{{item.title}}</span>
           </template>
@@ -32,7 +32,7 @@
               <template v-if="child.title"
                 slot="title">
                 <i v-if="child.icon"
-                  class="iconfont view-menu__iconfont"
+                  class="iconfont the-menu__iconfont"
                   :class="`ic_${child.icon}`"></i>
                 <span slot="title">{{child.title}}</span>
               </template>
@@ -55,7 +55,7 @@
           :key="`menu-${index}`"
           :index="item.index">
           <!-- <span class="one-level-menu"> -->
-            <i v-if="item.icon" class="iconfont view-menu__iconfont" :class="`ic_${item.icon}`"></i>
+            <i v-if="item.icon" class="iconfont the-menu__iconfont" :class="`ic_${item.icon}`"></i>
             <span slot="title" class="one-level-menu">{{item.title}}</span>
           <!-- </span> -->
         </el-menu-item>
@@ -128,7 +128,7 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@include b(view-menu) {
+@include b(the-menu) {
   position: absolute;
   top: 50px;
   left: 0;
@@ -207,8 +207,8 @@ export default {
     }
 
       // 导航中的 icon
-    .view-menu__iconfont,
-    .view-menu__menuIcon {
+    .the-menu__iconfont,
+    .the-menu__menuIcon {
       margin-right: 16px;
       font-size: 16px;
       width: 16px;

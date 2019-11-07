@@ -1,5 +1,5 @@
 <template>
-  <section class="page-opera-view">
+  <section class="the-pagination">
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .page-opera-view{
+  .the-pagination{
       text-align: right;
   }
 </style>

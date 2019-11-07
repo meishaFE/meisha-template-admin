@@ -1,11 +1,11 @@
 <template>
-  <div class="uploadImage" v-loading="loading">
-    <label v-if="!value" :for="inputId" class="uploadImage__uploadLabel">
+  <div class="upload-image" v-loading="loading">
+    <label v-if="!value" :for="inputId" class="upload-image__uploadLabel">
       <i class="iconfont ic_upload icon"></i>
     </label>
-    <div class="uploadImage__uploadDiv" v-else @mouseenter="isEnter = true" @mouseleave="isEnter = false">
+    <div class="upload-image__uploadDiv" v-else @mouseenter="isEnter = true" @mouseleave="isEnter = false">
       <img :src="computedvalue">
-      <label v-if="isEnter" :for="inputId" class="uploadImage__uploadLabel uploadImage__uploadHideLabel">
+      <label v-if="isEnter" :for="inputId" class="upload-image__uploadLabel upload-image__uploadHideLabel">
         <i class="iconfont ic_upload icon"></i>
       </label>
     </div>
@@ -40,7 +40,7 @@ const defaultCropperOptions = {
   aspectRatio: 1
 };
 export default {
-  name: 'UploadImage',
+  name: 'upload-image',
   data () {
     const that = this;
     return {
@@ -67,7 +67,7 @@ export default {
       },
       cropper: null,
       imageType: '', // 被裁剪图片的 MIME 类型
-      inputId: 'uploadImage_' + Math.random().toString().replace('.', ''),
+      inputId: 'upload-image_' + Math.random().toString().replace('.', ''),
       isEnter: false,
       loading: false
     };
@@ -187,7 +187,7 @@ export default {
   border-radius: 50%;
   cursor: pointer;
 }
-@include b(uploadImage) {
+@include b(upload-image) {
   display: inline-block;
   @include e(uploadDiv){
     @extend .circleSize;

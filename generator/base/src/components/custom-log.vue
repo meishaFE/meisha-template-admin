@@ -1,17 +1,17 @@
 <template>
-  <section class="fe-log">
+  <section class="custom-log">
     <div v-loading="defaultLoad">
-      <p class="fe-log__title">操作日志</p>
-      <ul class="fe-log__ul" v-if="defaultList.length > 0">
-        <li class="felog-line" v-for="item in defaultList" :key="item.id">
+      <p class="custom-log__title">操作日志</p>
+      <ul class="custom-log__ul" v-if="defaultList.length > 0">
+        <li class="custom-log-line" v-for="item in defaultList" :key="item.id">
           <template v-if="$scopedSlots.content">
             <slot name="content" :item="item"></slot>
           </template>
           <template v-else>
-            <span class="felog-line__s1">{{item[time] | dateFilter(4)}}</span>
-            <span class="felog-line__s2" :title="item[name]">{{item[name]}}</span>
-            <span class="felog-line__s3">{{item.phoneNo, item.phoneCode | phoneFilter}}</span>
-            <span class="felog-line__s4">
+            <span class="custom-log-line__s1">{{item[time] | dateFilter(4)}}</span>
+            <span class="custom-log-line__s2" :title="item[name]">{{item[name]}}</span>
+            <span class="custom-log-line__s3">{{item.phoneNo, item.phoneCode | phoneFilter}}</span>
+            <span class="custom-log-line__s4">
               <slot :item="item">
                 <p>{{item.explain}} {{item.description}}</p>
                 <template v-if="showRemark">
@@ -22,21 +22,21 @@
           </template>
         </li>
       </ul>
-      <p v-else class="fe-log__nodata">暂无数据</p>
-      <el-link :underline="false" v-if="pageObj.pageTotal > 3" type="primary" class="fe-log__more" @click="viewMore">查看更多</el-link>
+      <p v-else class="custom-log__nodata">暂无数据</p>
+      <el-link :underline="false" v-if="pageObj.pageTotal > 3" type="primary" class="custom-log__more" @click="viewMore">查看更多</el-link>
     </div>
-    <v-dialog :dialogObj="dialogObj">
-      <div slot="content" class="felog-content" v-loading="load">
-        <ul class="fe-log__ul" id="feLogDialog">
-          <li class="felog-line" v-for="item in list" :key="item.id">
+    <the-dialog :dialogObj="dialogObj">
+      <div slot="content" class="custom-log-content" v-loading="load">
+        <ul class="custom-log__ul" id="customLogDialog">
+          <li class="custom-log-line" v-for="item in list" :key="item.id">
             <template v-if="$scopedSlots.content">
               <slot name="content" :item="item"></slot>
             </template>
             <template v-else>
-              <span class="felog-line__s1">{{item[time] | dateFilter(4)}}</span>
-              <span class="felog-line__s2" :title="item[name]">{{item[name]}}</span>
-              <span class="felog-line__s3">{{item.phoneNo, item.phoneCode | phoneFilter}}</span>
-              <span class="felog-line__s4">
+              <span class="custom-log-line__s1">{{item[time] | dateFilter(4)}}</span>
+              <span class="custom-log-line__s2" :title="item[name]">{{item[name]}}</span>
+              <span class="custom-log-line__s3">{{item.phoneNo, item.phoneCode | phoneFilter}}</span>
+              <span class="custom-log-line__s4">
                 <slot :item="item">
                   <p>{{item.explain}} {{item.description}}</p>
                   <template v-if="showRemark">
@@ -47,17 +47,17 @@
             </template>
           </li>
         </ul>
-        <div class="felog-content__nav">
+        <div class="custom-log-content__nav">
           <pagination :pageObj="pageObj" @changePage="changePage"></pagination>
         </div>
       </div>
       <div slot="btnDefine"></div>
-    </v-dialog>
+    </the-dialog>
   </section>
 </template>
 
 <script>
-import vDialog from '@/components/the-dialog';
+import theDialog from '@/components/the-dialog';
 import pagination from '@/components/the-pagination.vue';
 /**
  * @param apiParams 日志API参数配置
@@ -132,8 +132,8 @@ export default {
         this.pageObj.pageTotal = res.data.count;
         this.list = res.data.list || [];
         this.$nextTick(() => {
-          if (document.querySelector('#feLogDialog')) {
-            document.querySelector('#feLogDialog').scrollTo({
+          if (document.querySelector('#customLogDialog')) {
+            document.querySelector('#customLogDialog').scrollTo({
               top: 0,
               left: 0,
               behavior: 'smooth'
@@ -167,7 +167,7 @@ export default {
     }
   },
   components: {
-    vDialog,
+    theDialog,
     pagination
   }
 };
@@ -175,7 +175,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/index";
-@include b(fe-log) {
+@include b(custom-log) {
   padding: 20px;
   background: white;
   @include e(title) {
@@ -201,7 +201,7 @@ export default {
     color: #909399;
   }
 }
-@include b(felog-line) {
+@include b(custom-log-line) {
   display: flex;
   @include font-style(14px,#909399,normal);
   @include e(s1 s2){
@@ -229,7 +229,7 @@ export default {
     margin-right: 10px;
   }
 }
-@include b(felog-content) {
+@include b(custom-log-content) {
   display:flex;
   flex-direction: column;
   @include e(nav) {
@@ -238,4 +238,3 @@ export default {
   }
 }
 </style>
-

@@ -164,5 +164,3 @@ export default {
     transition: max-height 0.3s;
   }
 </style>
-
-

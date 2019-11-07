@@ -1,6 +1,6 @@
 <template>
   <el-input :placeholder="inputPlaceholder"
-    class="input-with-select" size="small"
+    class="select-input" size="small"
     v-model="inputValue"
     @keyup.native.enter="search"
     @input="inputChange"
