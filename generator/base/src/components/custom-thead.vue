@@ -1,9 +1,9 @@
 <template>
-  <div class="fe-custom-header">
+  <div class="custom-thead">
     <template v-if="!$slots.content">
       <template v-if="isTip">
         <el-tooltip effect="light" content="自定义列" placement="top">
-          <el-button size="small" :class="{'fe-custom-header__customBtn':!$slots.default}" @click="showCustomHeader">
+          <el-button size="small" :class="{'custom-thead__customBtn':!$slots.default}" @click="showCustomHeader">
             <slot>
               <i :class="iconClass"></i>
             </slot>
@@ -11,7 +11,7 @@
         </el-tooltip>
       </template>
       <template v-else>
-        <el-button size="small" :class="{'fe-custom-header__customBtn':!$slots.default}" @click="showCustomHeader">
+        <el-button size="small" :class="{'custom-thead__customBtn':!$slots.default}" @click="showCustomHeader">
           <slot>
             <i :class="iconClass"></i>
           </slot>
@@ -53,7 +53,7 @@
 import vDialog from '@/components/the-dialog';
 
 export default {
-  name: 'fe-custom-theader',
+  name: 'custom-thead',
   /**
    * 本组件防坑指南(vue-loader和elementUI渲染冲突)
    * 每个 el-table-column 加个唯一识别 key 才不会报错
@@ -152,7 +152,7 @@ export default {
         confirmCall: this.confirmCall,
         cancelCall: this.cancelCall
       },
-      prefixName: 'fe-custom-theader'
+      prefixName: 'custom-thead'
     };
   },
   created () {
@@ -274,14 +274,14 @@ export default {
       margin-bottom: 15px;
       display: flex;
       align-items: center;
-      /deep/.el-checkbox__label{
+      ::v-deep .el-checkbox__label{
         max-width: 116px;
         text-overflow: ellipsis;
         overflow: hidden;
       }
     }
   }
-  @include b(fe-custom-header){
+  @include b(custom-thead){
     display: inline-block;
     @include e(customBtn){
       .iconfont{
@@ -295,11 +295,11 @@ export default {
     display: block;
     margin-bottom: 6px;
   }
-  /deep/.the-dialog__content{
+  ::v-deep .the-dialog__content{
     padding-bottom: 5px;
     min-height: unset;
   }
-  /deep/.the-dialog .el-dialog__header{
+  ::v-deep .the-dialog .el-dialog__header{
     text-align: left;
   }
   .el-icon-setting{

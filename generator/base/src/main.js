@@ -93,15 +93,12 @@ new Vue({
   <%_ if(options.vuex){ _%>
   store,
   <%_ } _%>
-
   <%_ if(options.router){ _%>
   router,
   <%_ } _%>
-
   <%# if_eq build "runtime" _%>
   render: h => h(App)
   <%# /if_eq _%>
-
   <%# if_eq build "standalone" _%>
   <%# template: '<App/>', %>
   <%# components: { App } %>

@@ -3,13 +3,13 @@
     <div class="test__section">
       <h1 class="test__section-title">分页组件</h1>
       <div>
-        <vPage :pageObj="pageObj" @changePage="changePage"></vPage>
+        <thePage :pageObj="pageObj" @changePage="changePage"></thePage>
       </div>
     </div>
     <div class="test__section">
       <h1 class="test__section-title">日志组件</h1>
       <div>
-        <vLog :logObj="logObj"></vLog>
+        <the-log :logObj="logObj"></the-log>
       </div>
     </div>
     <div class="test__section">
@@ -18,14 +18,14 @@
         <el-button @click="dialogObj.dialogVisible = true">弹窗</el-button>
       </div>
     </div>
-    <v-dialog :dialogObj="dialogObj"></v-dialog>
+    <the-dialog :dialogObj="dialogObj"></the-dialog>
   </section>
 </template>
 
 <script>
-import vPage from '@/components/Pagination';
-import vLog from '@/components/Log';
-import vDialog from '@/components/Dialog';
+import thePage from '@/components/the-pagination';
+import theLog from '@/components/custom-log';
+import theDialog from '@/components/the-dialog';
 
 export default {
   name: 'Test',
@@ -35,7 +35,7 @@ export default {
         name: '首页',
         to: '/'
       }, {
-        name: 'DEMO',
+        name: '组件',
         to: {}
       }],
       pageObj: {
@@ -78,9 +78,9 @@ export default {
     }
   },
   components: {
-    vPage,
-    vLog,
-    vDialog
+    thePage,
+    theLog,
+    theDialog
   }
 };
 </script>
@@ -100,6 +100,3 @@ export default {
   border-left: 4px solid #20a0ff;
 }
 </style>
-
-
-

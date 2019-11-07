@@ -1,10 +1,10 @@
 <template>
-  <section class="view-menu"
+  <section class="the-menu"
     :class="{'hidden-menu': isCollapse}">
-    <div class="view-menu__toggle-view">
+    <div class="the-menu__toggle-view">
       {{!isCollapse ? PROJECT_NAME : ''}}
-      <span @click="toggleMenu" class="view-menu__toggle-span">
-        <img src="@/assets/img/icon/icon_menu.png" class="view-menu__menuIcon">
+      <span @click="toggleMenu" class="the-menu__toggle-span">
+        <img src="@/assets/img/icon/icon_menu.png" class="the-menu__menuIcon">
       </span>
     </div>
     <el-menu :default-active="defaultActive"
@@ -22,7 +22,7 @@
           <template v-if="item.title"
             slot="title">
             <i v-if="item.icon"
-              class="iconfont view-menu__iconfont"
+              class="iconfont the-menu__iconfont"
               :class="item.icon"></i>
             <span slot="title">{{item.title}}</span>
           </template>
@@ -32,7 +32,7 @@
               <template v-if="child.title"
                 slot="title">
                 <i v-if="child.icon"
-                  class="iconfont view-menu__iconfont"
+                  class="iconfont the-menu__iconfont"
                   :class="`ic_${child.icon}`"></i>
                 <span slot="title">{{child.title}}</span>
               </template>
@@ -55,7 +55,7 @@
           :key="`menu-${index}`"
           :index="item.index">
           <!-- <span class="one-level-menu"> -->
-            <i v-if="item.icon" class="iconfont view-menu__iconfont" :class="`ic_${item.icon}`"></i>
+            <i v-if="item.icon" class="iconfont the-menu__iconfont" :class="`ic_${item.icon}`"></i>
             <span slot="title" class="one-level-menu">{{item.title}}</span>
           <!-- </span> -->
         </el-menu-item>
@@ -128,8 +128,7 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-// @import "../assets/scss/index";
-@include b(view-menu) {
+@include b(the-menu) {
   position: absolute;
   top: 50px;
   left: 0;
@@ -169,6 +168,7 @@ export default {
   &.hidden-menu {
     width: 48px;
   }
+
   // 重写样式
   .el-menu {
     top: 48px;
@@ -181,8 +181,6 @@ export default {
     padding-bottom: 40px;
     .el-menu-item {
       // NOTE: 当菜单收起的时候，如果存在一级导航，它的名称气泡会在 180px 以外
-      // min-width: 180px;
-      // text-indent: 8px;
       color: #606266;
       &.is-active{
         background:  rgba(61,122,248,0.10);
@@ -196,16 +194,27 @@ export default {
         text-indent: 8px;
       }
     }
-  }
-  // NOTE： 只有一级导航的菜单也需要向左移动 4px
-  .el-menu > .el-menu-item,
-  .el-menu /deep/.el-submenu__title{
-    height: 50px;
-    line-height: 50px;
-    color: #606266;
-    display: flex;
-    align-items: center;
-    margin-left: -4px;
+
+     // NOTE： 只有二级导航的菜单也需要向左移动 4px
+    .el-menu-item,
+    ::v-deep .el-submenu__title{
+      height: 50px;
+      line-height: 50px;
+      color: #606266;
+      display: flex;
+      align-items: center;
+      margin-left: -4px;
+    }
+
+      // 导航中的 icon
+    .the-menu__iconfont,
+    .the-menu__menuIcon {
+      margin-right: 16px;
+      font-size: 16px;
+      width: 16px;
+      line-height: 16px;
+      display: inline-block;
+    }
   }
 }
 </style>

@@ -1,6 +1,9 @@
 export default {
   auth: null,
-  public1: null,
+  userInfo: {
+    realname: 'Real Name',
+    groupName: 'Group Name'
+  },
   public2: null,
   public3: null
 };

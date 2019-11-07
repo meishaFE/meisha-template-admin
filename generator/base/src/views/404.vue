@@ -22,9 +22,6 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-<%_ if(!options.sassPattern){ _%>
-@import "../assets/scss/index";
-<%_ } _%>
 .not-found {
   position: absolute;
   left: 0;

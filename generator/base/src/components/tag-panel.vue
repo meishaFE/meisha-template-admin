@@ -54,7 +54,7 @@
 // 删除筛选项： 返回最新的筛选项
 
 export default {
-  name: 'TagPanel',
+  name: 'tag-panel',
   props: {
     categoryList: {
       type: Array

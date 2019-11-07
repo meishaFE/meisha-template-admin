@@ -1,10 +1,10 @@
 <template>
-  <section class="view-header">
-    <a class="view-header__logo" @click="toSystem">
+  <section class="the-header">
+    <a class="the-header__logo" @click="toSystem">
       <img src="@/assets/img/logo.png">
       <span>{{title}}</span>
     </a>
-    <el-dropdown v-if="userInfo" class="view-header__dropdown"  trigger="click" placement="bottom-start" @command="dropClick">
+    <el-dropdown v-if="userInfo" class="the-header__dropdown"  trigger="click" placement="bottom-start" @command="dropClick">
       <span class="vhd-link">
         <span class="vhd-link__name">{{userInfo.realname}}</span>
         <span class="vhd-link__middle"></span>
@@ -23,7 +23,7 @@
 <script>
 import { mapState } from 'vuex';
 export default {
-  name: 'Header',
+  name: 'the-header',
   computed: {
     ...mapState([
       'userInfo'
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-@include b(view-header) {
+@include b(the-header) {
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -113,8 +113,18 @@ export default {
     color: #C0C4CC;
     padding-left: 4px;
   }
+
+  .vhd-link__name,
+  .vhd-link__form {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 120px;
+    display: inline-block;
+    vertical-align: top;
+  }
 }
-/deep/.el-dropdown-menu__item{
+::v-deep .el-dropdown-menu__item{
   line-height: 34px;
   width: 151px;
   color: #606266;
