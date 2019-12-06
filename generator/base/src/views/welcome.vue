@@ -1,29 +1,53 @@
 <template>
-  <section class="welcome-page">
-    <div class="txt-center">欢迎登录{{PROJECT_NAME}}系统，点击左侧列表进入平台功能模块</div>
-  </section>
+  <div class="welcome-page">
+    <div class="main-content">
+      <img src="../assets/img/welcome_bg.png">
+      <div class="title">欢迎登录梅沙工作平台</div>
+      <p>点击左侧导航菜单进入指定功能模块</p>
+    </div>
+  </div>
 </template>
 
 <script>
-import { PROJECT_NAME } from '@/config';
 export default {
-  name: 'Welcome',
-  data () {
-    return {
-      PROJECT_NAME
-    };
-  }
+  name: 'MerchantWelcome'
 };
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .welcome-page {
-    padding-top: 140px;
-    .txt-center {
-       text-align: center;
-       padding-top: 126px;
-       background: url('../assets/img/welcome.png') no-repeat center top;
-       @include font-style(18px,$fontColorSubTitle, 42px);
+  .welcome-page{
+    background: #ffffff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 20px;
+    min-height: 500px;
+    .main-content{
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translate(0, -50%)
+    }
+    img{
+      display: block;
+      width: 338px;
+      margin: 0 auto;
+    }
+    .title{
+      font-size: 24px;
+      color: #303133;
+      text-align: center;
+      line-height: 33px;
+      margin-top: 30px;
+    }
+    p{
+      font-size: 14px;
+      color: #909399;
+      margin-top: 4px;
+      line-height: 20px;
+      text-align: center;
     }
   }
 </style>

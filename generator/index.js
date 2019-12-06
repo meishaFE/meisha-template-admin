@@ -19,7 +19,7 @@ module.exports = (api, options, rootOptions) => {
       '@babel/plugin-proposal-throw-expressions': '^7.0.0',
       'eslint-config-standard': '^12.0.0',
       'eslint-friendly-formatter': '^3.0.0',
-      'eslint-loader': '^1.7.1',
+      'eslint-loader': '^2.0.0',
       'eslint-plugin-html': '^3.0.0',
       'eslint-plugin-import': '^2.7.0',
       'eslint-plugin-node': '^5.2.0',
@@ -29,6 +29,8 @@ module.exports = (api, options, rootOptions) => {
       'prettier-eslint': '^8.0.0',//check,
     },
     scripts: {
+      "serve": "vue-cli-service serve --open",
+      "build": "vue-cli-service build",      
       'lint': 'vue-cli-service lint'
     }
   });

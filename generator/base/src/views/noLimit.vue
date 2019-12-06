@@ -1,19 +1,13 @@
 <template>
   <section class="view-all">
-    <the-header class="view-top" :userInfo="userInfo"/>
-    <section class="not-found">
+    <the-header class="view-top"/>
+    <section class="no-limit">
       <div class="part-word">
-        <div class="not-found-icon"></div>
-        <div class="common-word-style mt-40">
-          抱歉，你没有权限访问当前页面，请联系相关负责人。
-        </div>
-        <div class="common-word-style mt-20">
-          若你不清楚该联系谁:
-        </div>
-        <div class="common-word-style mt-10">1. 可以到系统反馈群里提问；</div>
-        <div class="common-word-style mt-5">2. 联系你所在团队的管理员为你开通</div>
+        <div class="no-limit-icon"></div>
+        <div class="tip-1">抱歉，你没有权限访问当前页面</div>
+        <div class="tip-2">请联系相关负责人或所在团队的管理员</div>
         <div class="para-3">
-          <el-button type="primary" @click="gotoAccount" plain>返回到首页</el-button>
+          <el-button type="primary" @click="$router.replace({name: 'Welcome'})">回到首页</el-button>
         </div>
       </div>
     </section>
@@ -24,16 +18,11 @@
 import theHeader from '../components/the-header.vue';
 
 export default {
-  name: 'notFound',
+  name: 'noLimit',
   data () {
     return {
 
     };
-  },
-  computed: {
-    // ...mapState([
-    //   'userInfo'
-    // ])
   },
   methods: {
     gotoAccount () {
@@ -48,7 +37,31 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .not-found{
+  .view-all{
+    // overflow: hidden;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    // min-width: 1103px;
+    .view-top{
+      position: relative;
+      z-index: 1000;
+    }
+    .view-right{
+      position: absolute;
+      top: 50px;
+      left: 180px;
+      right: 0;
+      bottom: 0;
+      @include transition(left .3s ease);
+    }
+    .view-right.is-change{
+      left: 64px;
+    }
+  }
+  .no-limit{
     position: absolute;
     left: 0;
     top: 0;
@@ -61,27 +74,29 @@ export default {
       top: 50%;
       transform: translate(-50%,-50%);
     }
-    .not-found-icon{
-      height: 125px;
-      background: url('../assets/img/pic_nopermission@2x.png') no-repeat center top;
-      @include backgroundSize(100px, 125px);
+    .no-limit-icon{
+      width: 210px;
+      height: 140px;
+      background: no-repeat center/100% url('../assets/img/pic_nopermission@2x.png');
     }
     .common-word-style{
       @include font-style(18px,$fontColorSubTitle,18px);
     }
     .para-3{
-      margin: 15px auto 0;
-      &__homebtn{
-        cursor:pointer;
-        display: inline-block;
-        width: 122px;
-        height: 42px;
-        background: $bgColorTotal;
-        text-align: center;
-        border:1px solid $defaultColorNormal;
-        @include rounded(4px);
-        @include font-style(16px,$defaultColorNormal,42px);
-      }
+      margin: 20px auto 0;
+      text-align: center;
+    }
+    .tip-1{
+      font-size: 18px;
+      color: #303133;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .tip-2{
+      font-size: 14px;
+      color: #909399;
+      text-align: center;
+      margin-top: 6px;
     }
   }
 </style>

@@ -11,7 +11,7 @@ const HOST = '';
  * 为空则会采用测试环境地址，详见下面 getBaseUrl
  * @type {String}
  */
-const DEVELOP_LOCAL_HOST = '';
+const DEVELOP_LOCAL_HOST = 'dev-env-url';
 
 export const ENV = {
   DEV: /^127.0.0.1|^localhost|^192.168/.test(window.location.host),
@@ -26,7 +26,7 @@ const getBaseUrl = () => {
   let baseUrl = '';
 
   if (ENV.DEV) {
-    baseUrl = `//${DEVELOP_LOCAL_HOST || 'test-'}${HOST}`;
+    baseUrl = `//${DEVELOP_LOCAL_HOST}`;
   } else if (ENV.TEST) {
     baseUrl = `//test-${HOST}`;
   } else if (ENV.PRE) {
@@ -44,9 +44,7 @@ export const BASE_URL = getBaseUrl();
 export const API = {
   PUBLIC: {
     LOGIN: '/login',
-    GET_PUBLIC_1: '/url',
-    GET_PUBLIC_2: '/url',
-    GET_PUBLIC_3: '/url'
+    LOGOUT: ''
   },
   MODULE_A: {
     GET_STATE_A_1: 'url',
