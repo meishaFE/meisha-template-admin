@@ -3,13 +3,13 @@
     <div class="part-word">
       <div class="not-found-icon"></div>
       <div class="para-1">
-        Ohno,你要的页面不见了。
+        Oh，页面不见了
       </div>
-      <div class="para-2">
+      <!-- <div class="para-2">
         这时候你可以：
-      </div>
+      </div> -->
       <div class="para-3">
-        <router-link class="para-3__homebtn" :to="{name: 'Welcome'}">返回到首页</router-link>
+        <el-button type="primary" @click="$router.push({name: 'Welcome'})">回到首页</el-button>
       </div>
     </div>
   </section>
@@ -28,7 +28,6 @@ export default {
   top: 0;
   right: 0;
   bottom: 0;
-  background: $bgColorTotal;
 
   .part-word {
     position: absolute;
@@ -38,23 +37,22 @@ export default {
   }
 
   .not-found-icon {
-    width: 300px;
-    height: 125px;
-    background: url('../assets/img/notFound.png') no-repeat left top;
+    width: 210px;
+    height: 140px;
+    background: no-repeat center/100% url('../assets/img/notFound.png');
   }
 
   .para-1 {
-    margin-top: 60px;
-    @include font-style(18px,$fontColorSubTitle, 18px);
-  }
-
-  .para-2 {
-    margin-top: 10px;
-    @include font-style(18px,$fontColorSubTitle, 18px);
+    margin-top: 20px;
+    font-size: 18px;
+    color: #303133;
+    line-height: 25px;
+    text-align: center;
   }
 
   .para-3 {
-    margin: 15px auto 0;
+    margin: 30px auto 0;
+    text-align: center;
 
     &__homebtn {
       cursor: pointer;
